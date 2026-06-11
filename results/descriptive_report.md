@@ -13,7 +13,7 @@ DATASET_CONFIG = {
 
 ## Dataset 1
 
-- Source file: `D:\硕士\数学建模\A题-帕金森病症的声音分类识别问题\附件 1 parkinson+s+disease+classification\pd_speech_features.csv`
+- Source file: `D:\硕士\数学建模\data\附件 1 parkinson+s+disease+classification\pd_speech_features.csv`
 - Read method: `pd.read_csv(path, header=1)`
 - Raw shape used for descriptive statistics: `(756, 755)`
 - Metadata columns: `id, gender, class`
@@ -33,7 +33,7 @@ DATASET_CONFIG = {
 
 ## Dataset 2
 
-- Source file: `D:\硕士\数学建模\A题-帕金森病症的声音分类识别问题\附件2 ReplicatedAcousticFeatures-ParkinsonDatabase\ReplicatedAcousticFeatures-ParkinsonDatabase.csv`
+- Source file: `D:\硕士\数学建模\data\附件2 ReplicatedAcousticFeatures-ParkinsonDatabase\ReplicatedAcousticFeatures-ParkinsonDatabase.csv`
 - Read method: `pd.read_csv(path)`
 - Raw shape used for descriptive statistics: `(240, 48)`
 - Metadata columns: `ID, Recording, Status, Gender`
