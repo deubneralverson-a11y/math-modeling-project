@@ -245,7 +245,8 @@ def main() -> None:
         "- `sex_male=1` 表示男性，`sex_male=0` 表示女性。",
         "- Dataset 1: 保留原始列 `gender`，新增 `sex_male = gender`。",
         "- Dataset 2: 保留原始列 `Gender`，新增 `sex_male = 1 - Gender`。",
-        "- 后续跨数据集分析、交叉表和建模协变量均使用 `sex_male`；原始 `gender/Gender` 只用于数据审计和溯源，不进入统一建模特征。",
+        "- 后续跨数据集分析和交叉表均使用 `sex_male`；原始 `gender/Gender` 只用于数据审计和溯源，不进入统一建模特征。",
+        "- 主模型应只使用语音特征；`sex_male` 不直接进入主模型，仅用于补充模型或敏感性分析，以检验性别混杂影响。",
         "",
     ]
 
@@ -269,11 +270,13 @@ def main() -> None:
             RESULTS_DIR / f"grouped_subject_statistics_{dataset_key}.csv",
         )
 
+        for obsolete in RESULTS_DIR.glob(f"{dataset_key}_class_gender_crosstab_*.csv"):
+            obsolete.unlink()
         record_crosstab_path = (
-            RESULTS_DIR / f"{dataset_key}_class_gender_crosstab_record.csv"
+            RESULTS_DIR / f"{dataset_key}_class_sex_male_crosstab_record.csv"
         )
         subject_crosstab_path = (
-            RESULTS_DIR / f"{dataset_key}_class_gender_crosstab_subject.csv"
+            RESULTS_DIR / f"{dataset_key}_class_sex_male_crosstab_subject.csv"
         )
         save_crosstab(
             df,

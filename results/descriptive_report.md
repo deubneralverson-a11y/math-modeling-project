@@ -18,7 +18,8 @@ DATASET_CONFIG = {
 - `sex_male=1` 表示男性，`sex_male=0` 表示女性。
 - Dataset 1: 保留原始列 `gender`，新增 `sex_male = gender`。
 - Dataset 2: 保留原始列 `Gender`，新增 `sex_male = 1 - Gender`。
-- 后续跨数据集分析、交叉表和建模协变量均使用 `sex_male`；原始 `gender/Gender` 只用于数据审计和溯源，不进入统一建模特征。
+- 后续跨数据集分析和交叉表均使用 `sex_male`；原始 `gender/Gender` 只用于数据审计和溯源，不进入统一建模特征。
+- 主模型应只使用语音特征；`sex_male` 不直接进入主模型，仅用于补充模型或敏感性分析，以检验性别混杂影响。
 
 ## Dataset 1
 
@@ -41,8 +42,8 @@ DATASET_CONFIG = {
 ### 输出
 - 记录级描述统计: `results/descriptive_statistics_dataset1.csv`
 - 受试者聚合描述统计: `results/grouped_subject_statistics_dataset1.csv`
-- 记录级类别 × `sex_male` 交叉表: `results/dataset1_class_gender_crosstab_record.csv`
-- 受试者级类别 × `sex_male` 交叉表: `results/dataset1_class_gender_crosstab_subject.csv`
+- 记录级类别 × `sex_male` 交叉表: `results/dataset1_class_sex_male_crosstab_record.csv`
+- 受试者级类别 × `sex_male` 交叉表: `results/dataset1_class_sex_male_crosstab_subject.csv`
 
 ## Dataset 2
 
@@ -65,8 +66,8 @@ DATASET_CONFIG = {
 ### 输出
 - 记录级描述统计: `results/descriptive_statistics_dataset2.csv`
 - 受试者聚合描述统计: `results/grouped_subject_statistics_dataset2.csv`
-- 记录级类别 × `sex_male` 交叉表: `results/dataset2_class_gender_crosstab_record.csv`
-- 受试者级类别 × `sex_male` 交叉表: `results/dataset2_class_gender_crosstab_subject.csv`
+- 记录级类别 × `sex_male` 交叉表: `results/dataset2_class_sex_male_crosstab_record.csv`
+- 受试者级类别 × `sex_male` 交叉表: `results/dataset2_class_sex_male_crosstab_subject.csv`
 
 ### Recording 分布检查
 - 记录级 `Recording` 分布: `{1: 80, 2: 80, 3: 80}`
