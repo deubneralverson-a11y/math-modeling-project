@@ -367,9 +367,9 @@ def main() -> None:
     dataset2 = loaded["dataset2"]
     dataset1_dedup = dataset1.drop_duplicates()
     dataset1_dedup_path = RESULTS_DIR / "model_ready_dataset1_deduplicated.csv"
-    dataset2_standardized_path = RESULTS_DIR / "model_ready_dataset2_standardized.csv"
+    dataset2_prepared_path = RESULTS_DIR / "model_ready_dataset2_prepared.csv"
     write_csv(dataset1_dedup, dataset1_dedup_path)
-    write_csv(dataset2, dataset2_standardized_path)
+    write_csv(dataset2, dataset2_prepared_path)
 
     d1_dedup_record_counts = (
         dataset1_dedup.groupby(DATASET_CONFIG["dataset1"]["id_col"])
@@ -388,7 +388,7 @@ def main() -> None:
             "- 使用去重版后，不再严格满足每个受试者 3 条记录，后续受试者级聚合必须显式说明。",
             f"- 去重后受试者记录数分布: `{d1_dedup_record_counts}`。",
             f"- 去重建模准备版: `results/{dataset1_dedup_path.name}`。",
-            f"- Dataset 2 标准化建模准备版: `results/{dataset2_standardized_path.name}`。",
+            f"- Dataset 2 prepared 建模准备版: `results/{dataset2_prepared_path.name}`。",
             "",
             "## 图像输出",
             "",
@@ -416,7 +416,7 @@ def main() -> None:
         RESULTS_DIR / "grouped_subject_statistics_dataset2.csv",
         *crosstab_outputs,
         dataset1_dedup_path,
-        dataset2_standardized_path,
+        dataset2_prepared_path,
         RESULTS_DIR / "descriptive_report.md",
     ]:
         print(f"- {rel(path)}")

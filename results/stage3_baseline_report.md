@@ -28,7 +28,7 @@ Models: Logistic Regression, SVM-RBF, Random Forest.
 
 ## Dataset 2
 
-- Input: `results/model_ready_dataset2_standardized.csv`
+- Input: `results/model_ready_dataset2_prepared.csv`
 - Splitter: `StratifiedGroupKFold`
 - Subjects: `80`
 - Records: `240`
@@ -37,6 +37,7 @@ Models: Logistic Regression, SVM-RBF, Random Forest.
 - Subject-level class distribution: `{0: 40, 1: 40}`
 - Acoustic feature count: `44`
 - Feature sets: `acoustic_only` is the main analysis; `acoustic_plus_sex` is supplemental.
+- Dataset 2 prepared file only contains metadata cleanup and sex_male encoding; acoustic features are not globally z-score standardized before cross-validation. Scaling for Logistic Regression and SVM-RBF is performed only within sklearn Pipeline in each training fold.
 
 ### Fold audit
 

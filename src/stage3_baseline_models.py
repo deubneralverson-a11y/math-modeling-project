@@ -67,7 +67,7 @@ DATASET_CONFIGS = (
     DatasetConfig(
         key="dataset2",
         display_name="Dataset 2",
-        path=RESULTS_DIR / "model_ready_dataset2_standardized.csv",
+        path=RESULTS_DIR / "model_ready_dataset2_prepared.csv",
         id_col="ID",
         label_col="Status",
         metadata_cols=("ID", "Recording", "Status", "Gender"),
@@ -473,11 +473,16 @@ def run_dataset(
             f"- Acoustic feature count: `{len(features_by_name['acoustic_only'])}`",
             "- Feature sets: `acoustic_only` is the main analysis; "
             "`acoustic_plus_sex` is supplemental.",
-            "",
-            "### Fold audit",
-            "",
         ]
     )
+    if config.key == "dataset2":
+        report_lines.append(
+            "- Dataset 2 prepared file only contains metadata cleanup and sex_male "
+            "encoding; acoustic features are not globally z-score standardized before "
+            "cross-validation. Scaling for Logistic Regression and SVM-RBF is "
+            "performed only within sklearn Pipeline in each training fold."
+        )
+    report_lines.extend(["", "### Fold audit", ""])
     if fallback_reason:
         report_lines.extend(
             [

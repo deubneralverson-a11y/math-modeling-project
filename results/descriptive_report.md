@@ -81,7 +81,7 @@ DATASET_CONFIG = {
 - 使用去重版后，不再严格满足每个受试者 3 条记录，后续受试者级聚合必须显式说明。
 - 去重后受试者记录数分布: `{2: 1, 3: 251}`。
 - 去重建模准备版: `results/model_ready_dataset1_deduplicated.csv`。
-- Dataset 2 标准化建模准备版: `results/model_ready_dataset2_standardized.csv`。
+- Dataset 2 prepared 建模准备版: `results/model_ready_dataset2_prepared.csv`。
 
 ## 图像输出
 

@@ -1,8 +1,8 @@
 # Stage 3 Preprocessing Note
 
-## Dataset 2 `standardized` naming
+## Dataset 2 prepared naming
 
-`results/model_ready_dataset2_standardized.csv` 中的 `standardized` 仅指建模准备阶段的字段格式与性别编码统一，不表示对声学特征做过统计标准化。
+`results/model_ready_dataset2_prepared.csv` 仅指建模准备阶段的字段格式与性别编码统一，不表示对声学特征做过统计标准化。
 
 具体含义：
 
@@ -18,10 +18,10 @@
 核查依据：
 
 - `src/stage2_qc_pipeline.py` 中 Dataset 2 的建模准备文件由原始数据读取后仅调用 `add_sex_male()`，随后直接写出。
-- `results/model_ready_dataset2_standardized.csv` 与原始文件 `data/附件2 ReplicatedAcousticFeatures-ParkinsonDatabase/ReplicatedAcousticFeatures-ParkinsonDatabase.csv` 对比后，44 个声学特征列逐列完全一致，最大绝对差为 `0.0`。
+- `results/model_ready_dataset2_prepared.csv` 与原始文件 `data/附件2 ReplicatedAcousticFeatures-ParkinsonDatabase/ReplicatedAcousticFeatures-ParkinsonDatabase.csv` 对比后，44 个声学特征列逐列完全一致，最大绝对差为 `0.0`。
 - 该文件额外新增的列只有 `sex_male`。
 
-因此，本阶段无需废弃 `model_ready_dataset2_standardized.csv`，也无需改为重新从原始数据读取。
+因此，本阶段无需废弃 Dataset 2 prepared 文件，也无需改为重新从原始数据读取。
 
 ## Stage 3 scaling policy
 
