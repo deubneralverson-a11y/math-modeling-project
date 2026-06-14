@@ -1,0 +1,15 @@
+﻿stage,check_name,expected,observed,status,severity,evidence_file,notes
+Stage 3,Subject-level metrics include required clinical metrics,"['balanced_accuracy', 'roc_auc', 'sensitivity', 'specificity']","['balanced_accuracy', 'roc_auc', 'sensitivity', 'specificity']",pass,medium,results/stage3_baseline_metrics_subject_level.csv,
+Stage 3,Metric summary rows equal fold recomputation,[],[],pass,high,results/stage3_baseline_metrics_subject_level.csv,Checked 8 metrics per group; ddof=1.
+Stage 5,Recommended flag count,1,1,pass,critical,results/stage5_clustering_metrics.csv,
+Stage 5,Recommended scheme,"('top20_biomarkers', 'pca_5', 'KMeans')","('top20_biomarkers', 'pca_5', 'KMeans')",pass,critical,results/stage5_clustering_metrics.csv,
+Stage 5,Recommended cluster sizes,"{0: 62, 1: 126}","{0: 62, 1: 126}",pass,critical,results/stage5_cluster_assignments_dataset1_pd.csv,
+Stage 5,Metric summary rows equal fold recomputation,[],[],pass,high,results/stage5_cluster_label_classifier_metrics.csv,Checked 5 metrics per group; ddof=0.
+Stage 6,Recommended flag count,1,1,pass,critical,results/stage6_six_cluster_metrics.csv,
+Stage 6,Recommended scheme,"('top20_biomarkers', 'pca_5', 'AgglomerativeClustering')","('top20_biomarkers', 'pca_5', 'AgglomerativeClustering')",pass,critical,results/stage6_six_cluster_metrics.csv,
+Stage 6,Recommended cluster sizes,"{0: 13, 1: 55, 2: 34, 3: 28, 4: 25, 5: 33}","{0: 13, 1: 55, 2: 34, 3: 28, 4: 25, 5: 33}",pass,critical,results/stage6_six_cluster_assignments_dataset1_pd.csv,
+Stage 6,k=2 to k=8 reference scan exists,k values 2..8,"[2, 3, 4, 5, 6, 7, 8]",pass,medium,results/stage6_k_scan_metrics.csv,
+Stage 6,50-run stability analysis recorded,stability_n_runs == 50,k6=[50]; scan=[50],pass,medium,results/stage6_six_cluster_metrics.csv; results/stage6_k_scan_metrics.csv,
+Stage 6,Stage 5 cluster use limited to alignment/crosswalk/recommendation scoring,not used as clustering input,stage5_nmi appears in recommendation scoring,warning,medium,src/stage6_pd_six_cluster_phenotyping.py,"This is not clustering input leakage, but it should be disclosed because Stage 5 labels influence candidate recommendation."
+Stage 6,Stage 5 x Stage 6 crosswalk counts,0,0,pass,high,results/stage6_stage5_crosswalk.csv,
+Stage 6,Metric summary rows equal fold recomputation,[],[],pass,high,results/stage6_six_cluster_label_classifier_metrics.csv,Checked 7 metrics per group; ddof=0.
