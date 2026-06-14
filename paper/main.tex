@@ -1,0 +1,121 @@
+\documentclass[UTF8,a4paper,zihao=-4,fontset=none]{ctexart}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{amsmath,amssymb}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{fvextra}
+\usepackage[hidelinks]{hyperref}
+
+\setCJKmainfont[
+  Path = C:/Windows/Fonts/,
+  UprightFont = simsun.ttc,
+  AutoFakeBold = 2.5,
+  AutoFakeSlant = 0.2
+]{SimSun}
+\setCJKsansfont[
+  Path = C:/Windows/Fonts/,
+  UprightFont = simhei.ttf,
+  BoldFont = simhei.ttf,
+  AutoFakeBold = 2.5
+]{SimHei}
+\setCJKmonofont[
+  Path = C:/Windows/Fonts/,
+  UprightFont = simfang.ttf,
+  AutoFakeBold = 2.5
+]{FangSong}
+\setCJKfamilyfont{zhsong}[
+  Path = C:/Windows/Fonts/,
+  UprightFont = simsun.ttc,
+  AutoFakeBold = 2.5,
+  AutoFakeSlant = 0.2
+]{SimSun}
+\setCJKfamilyfont{zhhei}[
+  Path = C:/Windows/Fonts/,
+  UprightFont = simhei.ttf,
+  BoldFont = simhei.ttf,
+  AutoFakeBold = 2.5
+]{SimHei}
+\providecommand{\songti}{\CJKfamily{zhsong}}
+\providecommand{\heiti}{\CJKfamily{zhhei}}
+
+\setstretch{1.0}
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\ctexset{
+  section = {
+    format = \centering\heiti\zihao{4},
+    name = {},
+    number = \chinese{section},
+    aftername = \quad,
+    beforeskip = 1.5ex,
+    afterskip = 1.0ex
+  },
+  subsection = {
+    format = \heiti\zihao{-4},
+    beforeskip = 1.2ex,
+    afterskip = 0.6ex
+  },
+  subsubsection = {
+    format = \heiti\zihao{-4},
+    beforeskip = 1.0ex,
+    afterskip = 0.4ex
+  }
+}
+
+\captionsetup{font=small,labelfont=bf,labelsep=quad}
+\renewcommand{\arraystretch}{1.15}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcommand{\feature}[1]{\texttt{\detokenize{#1}}}
+\DefineVerbatimEnvironment{codeblock}{Verbatim}{
+  fontsize=\tiny,
+  breaklines=true,
+  breakanywhere=true,
+  numbers=left,
+  numbersep=4pt,
+  xleftmargin=1.8em
+}
+
+\begin{document}
+\songti\zihao{-4}
+\setcounter{page}{1}
+
+\input{sections/00_abstract}
+\clearpage
+
+\input{sections/01_problem}
+\clearpage
+\input{sections/02_analysis}
+\clearpage
+\input{sections/03_data}
+\clearpage
+\input{sections/04_model_diagnosis}
+\clearpage
+\input{sections/05_biomarker}
+\clearpage
+\input{sections/06_dataset2}
+\clearpage
+\input{sections/07_two_cluster}
+\clearpage
+\input{sections/08_six_cluster}
+\clearpage
+\input{sections/10_strengths_limits}
+\clearpage
+\input{sections/11_conclusion}
+\clearpage
+\input{sections/12_references}
+\clearpage
+\input{sections/13_appendix}
+
+\end{document}

@@ -1,0 +1,22 @@
+\section{问题分析与模型假设}
+
+两个数据集均包含同一受试者的多次录音。若直接把录音记录作为完全独立样本进行行级随机划分，同一受试者的不同录音可能同时进入训练集与测试集，从而高估模型性能。因此，监督建模必须以受试者为分组单位，Dataset 1 的主分析也应采用 subject-level 口径报告结果。
+
+五个问题对应的方法路线如下。问题一使用 Dataset 1 的声学特征建立 PD/Healthy 二分类辅助诊断模型，并以受试者级交叉验证结果作为主结论。问题二基于 Dataset 1 受试者级数据，从统计差异、效应量、稳定选择和模型重要性等多个角度综合识别判别性声学特征。问题三单独使用 Dataset 2 建立诊断模型，并按 subject ID 分组交叉验证。问题四和问题五均缺少真实临床症状标签，因此仅在 Dataset 1 的 PD 受试者内部进行无监督聚类，分别形成二类和六类潜在语音表型。
+
+为保证建模问题可计算并与数据结构一致，作如下假设：第一，同一受试者的多次录音是同一统计个体的重复观测，模型评估时不能跨训练集和测试集泄漏；第二，给定标签仅表示 Healthy/PD 二分类状态，不含运动型/非运动型或六类症状真标签；第三，声学特征的标准化参数、模型参数和特征选择参数只能由训练折估计；第四，聚类标签只表示声学空间中的潜在结构，不预设临床亚型含义。
+
+设第 \(i\) 名受试者的声学特征向量为 \(\mathbf{x}_i\in\mathbb{R}^p\)，二分类标签为 \(y_i\in\{0,1\}\)，其中 \(y_i=1\) 表示 PD。监督诊断模型学习映射
+\begin{equation}
+  f:\mathbf{x}_i\mapsto \hat{p}_i=P(y_i=1\mid \mathbf{x}_i),
+\end{equation}
+并由阈值得到类别预测 \(\hat{y}_i\)。主要评价指标定义为
+\begin{equation}
+  \mathrm{Sensitivity}=\frac{TP}{TP+FN},\quad
+  \mathrm{Specificity}=\frac{TN}{TN+FP},
+\end{equation}
+\begin{equation}
+  \mathrm{Balanced\ Accuracy}=\frac{\mathrm{Sensitivity}+\mathrm{Specificity}}{2},\quad
+  F_1=\frac{2TP}{2TP+FP+FN}.
+\end{equation}
+特征识别模型输出候选语音生物标志物排序。无监督分型模型在 PD 受试者集合上学习聚类映射 \(g(\mathbf{x}_i)=c_i\)，并使用 silhouette、Davies-Bouldin、簇大小比例和重采样稳定性 ARI 评价声学空间划分质量。由于聚类标签来自声学特征内部结构，后续聚类标签复现模型只能用于复现聚类规则，不能解释为真实临床症状诊断模型。

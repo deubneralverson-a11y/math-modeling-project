@@ -1,0 +1,43 @@
+\section{模型一：帕金森病二分类辅助诊断模型}
+
+\subsection{模型输入与方法}
+
+模型一输入为两个数据集的 acoustic-only 特征。Dataset 1 使用去重后的建模准备文件，并在报告主结果时按受试者聚合；Dataset 2 使用准备后的 240 条录音，并在交叉验证中按受试者 ID 分组。比较的模型包括 Logistic Regression、SVM-RBF 和 Random Forest。对 Logistic Regression 与 SVM-RBF，标准化嵌入 sklearn Pipeline，并且只在训练折内拟合。
+
+评价指标包括 accuracy、balanced accuracy、AUC、sensitivity、specificity 和 F1。其中 sensitivity 表示 PD 类召回率，specificity 表示 Healthy 类召回率。由于 Dataset 1 的 PD 受试者多于 Healthy 受试者，balanced accuracy 与 specificity 对判断模型是否过度偏向 PD 类尤为重要。
+
+\subsection{受试者级主结果}
+
+\begin{table}[H]
+\centering
+\caption{Dataset 1 subject-level acoustic-only 主结果}
+\small
+\begin{tabularx}{\textwidth}{lYYYYYY}
+\toprule
+模型 & Accuracy & Balanced Acc. & AUC & Sensitivity & Specificity & F1 \\
+\midrule
+Logistic Regression & 0.7893 & 0.6989 & 0.8353 & 0.8825 & 0.5154 & 0.8616 \\
+Random Forest & 0.8290 & 0.7004 & 0.8511 & 0.9623 & 0.4385 & 0.8936 \\
+SVM-RBF & 0.8171 & 0.7118 & 0.8234 & 0.9249 & 0.4987 & 0.8825 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Dataset 1 中 Random Forest 的 accuracy 和 AUC 较高，分别为 0.8290 和 0.8511，但 specificity 仅为 0.4385，说明该模型在类别不均衡背景下更倾向于判为 PD。SVM-RBF 的 balanced accuracy 为 0.7118，在敏感度和特异度之间相对均衡；Logistic Regression 具有较好的可解释性，但综合指标略低。
+
+\begin{table}[H]
+\centering
+\caption{Dataset 2 subject-level acoustic-only 主结果}
+\small
+\begin{tabularx}{\textwidth}{lYYYYYY}
+\toprule
+模型 & Accuracy & Balanced Acc. & AUC & Sensitivity & Specificity & F1 \\
+\midrule
+Logistic Regression & 0.7875 & 0.7875 & 0.8781 & 0.8250 & 0.7500 & 0.7905 \\
+Random Forest & 0.7875 & 0.7875 & 0.8656 & 0.7250 & 0.8500 & 0.7748 \\
+SVM-RBF & 0.8375 & 0.8375 & 0.8906 & 0.8000 & 0.8750 & 0.8300 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Dataset 2 中 SVM-RBF 的 accuracy、balanced accuracy 和 AUC 均最高，specificity 也达到 0.8750，因此在该数据集上作为主推荐诊断模型。Random Forest 的 specificity 较高但 sensitivity 较低，Logistic Regression 则更偏向保持 PD 类召回。

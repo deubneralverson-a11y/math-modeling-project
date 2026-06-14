@@ -1,0 +1,28 @@
+\section{数据预处理与质量控制}
+
+\subsection{数据结构审计}
+
+Dataset 1 原始数据规模为 756 行、755 列，包含 252 名受试者，每名受试者理论上有 3 次录音。数据包含 752 个纯声学特征，元数据列为 \feature{id}、\feature{gender} 和 \feature{class}。审计发现 1 条完全重复记录，去重后建模准备文件为 755 行；受试者级聚合后为 252 行，其中 Healthy 64 名、PD 188 名。Dataset 1 主分析使用 subject-level 口径，避免把重复录音当作完全独立样本。
+
+Dataset 2 原始数据规模为 240 行、48 列，包含 80 名受试者，每人 3 次录音，共 44 个声学特征。元数据列为 \feature{ID}、\feature{Recording}、\feature{Status} 和 \feature{Gender}。受试者级类别分布为 Healthy 40 名、PD 40 名，类别均衡。
+
+\begin{table}[H]
+\centering
+\caption{两个数据集的基本结构}
+\begin{tabularx}{\textwidth}{lYYYYY}
+\toprule
+数据集 & 原始规模 & 受试者数 & 录音结构 & 声学特征数 & 受试者级类别分布 \\
+\midrule
+Dataset 1 & 756 行、755 列 & 252 & 每人约 3 次录音 & 752 & Healthy 64，PD 188 \\
+Dataset 2 & 240 行、48 列 & 80 & 每人 3 次录音 & 44 & Healthy 40，PD 40 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{性别变量统一与主模型边界}
+
+两个数据集原始性别编码方向不同。为便于描述统计，预处理时统一构造 \feature{sex_male}：Dataset 1 中 \feature{sex_male = gender}，Dataset 2 中 \feature{sex_male = 1 - Gender}。该变量仅用于描述统计和补充敏感性分析，主声学模型不使用 \feature{sex_male}，从而避免把非声学人口学变量混入主要声学诊断结论。
+
+\subsection{交叉验证与标准化原则}
+
+监督诊断模型使用 StratifiedGroupKFold，并以受试者 ID 作为分组变量。标准化、模型训练和特征选择等涉及数据分布学习的步骤均在交叉验证训练折内部完成。Dataset 2 的准备文件只完成元数据清理和性别编码，声学特征没有在交叉验证前做全局 z-score 标准化。

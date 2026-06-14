@@ -1,0 +1,45 @@
+\section{模型四：二类潜在语音表型辅助分型}
+
+\subsection{建模边界}
+
+题目第四问涉及运动型和非运动型帕金森病，但给定数据没有真实运动型/非运动型临床标签。因此，本文不训练真实临床亚型监督分类器，而是在 Dataset 1 的 188 名 PD 受试者内部进行 k=2 无监督聚类，得到基于语音特征的二类潜在表型。该结果可作为探索性辅助分型线索，不能等同于真实临床亚型诊断。
+
+\subsection{输入、方法与结果}
+
+候选输入特征集包括前述综合排序得到的 Top20、Top50 和 all acoustic 特征。主方案选择 \feature{top20_biomarkers} / \feature{pca_5} / KMeans。所有候选方案先执行标准化，再按方案进行 PCA 和聚类。聚类输入不包含 \feature{id}、\feature{gender}、\feature{class}、\feature{sex_male}、\feature{record_count} 或任何标签列。
+
+\begin{table}[H]
+\centering
+\caption{二类潜在语音表型主方案指标}
+\begin{tabularx}{\textwidth}{lY}
+\toprule
+项目 & 数值 \\
+\midrule
+主方案 & \feature{top20_biomarkers} / \feature{pca_5} / KMeans \\
+PD 受试者数 & 188 \\
+Cluster 0 人数 & 62 \\
+Cluster 1 人数 & 126 \\
+Smaller cluster ratio & 0.3298 \\
+Silhouette & 0.3674 \\
+Stability ARI mean & 0.9854 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{figures/stage5_pca_k2_clusters_top20.png}
+\caption{Dataset 1 PD 受试者二类潜在语音表型 PCA 可视化}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.88\textwidth]{figures/stage5_cluster_feature_difference_top20.png}
+\caption{二类潜在语音表型的 Top20 特征差异}
+\end{figure}
+
+\subsection{表型解释}
+
+主方案得到 cluster 0 共 62 人、cluster 1 共 126 人。cluster 0 在多项 Delta / Delta-delta 动态谱波动特征上更高，例如 \feature{std_6th_delta_delta}、\feature{std_7th_delta_delta}、\feature{std_10th_delta}、\feature{std_6th_delta} 等。cluster 1 在部分 TQWT 多尺度特征上更高，例如 \feature{tqwt_entropy_shannon_dec_17}、\feature{tqwt_maxValue_dec_11}、\feature{tqwt_stdValue_dec_7}、\feature{tqwt_TKEO_std_dec_11} 等。
+
+后续聚类标签复现模型学习的是上述无监督聚类标签，用于将探索性分型规则模型化。该分类器不是根据真实运动型/非运动型标签训练，不能解释为真实临床亚型诊断性能。
