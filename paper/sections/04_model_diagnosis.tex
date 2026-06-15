@@ -4,7 +4,7 @@
 
 模型一输入为两个数据集的 acoustic-only 特征。Dataset 1 使用去重后的建模准备文件，并在报告主结果时按受试者聚合；Dataset 2 使用准备后的 240 条录音，并在交叉验证中按受试者 ID 分组。语音特征结合机器学习用于帕金森病识别已有较多研究基础，Little 等和 Tsanas 等分别从发声障碍测量与非侵入语音测试角度验证了语音特征在帕金森病远程监测中的价值\upcite{little2009,tsanas2010}；Naranjo 等进一步讨论了重复录音条件下的分类问题\upcite{dataset2,naranjo2017}。
 
-本文比较的模型包括 Logistic Regression、SVM-RBF 和 Random Forest。其中 SVM 适合处理非线性间隔分类问题\upcite{svm}，Random Forest 通过多棵决策树集成提高稳定性\upcite{breiman}。模型实现采用 scikit-learn 机器学习库\upcite{sklearn}。对 Logistic Regression 与 SVM-RBF，标准化嵌入 sklearn Pipeline，并且只在训练折内拟合。
+本文比较的主模型包括 Logistic Regression、SVM-RBF 和 Random Forest，并加入轻量 XGBoost 作为补充集成模型证据。其中 SVM 适合处理非线性间隔分类问题\upcite{svm}，Random Forest 通过多棵决策树集成提高稳定性\upcite{breiman}，XGBoost 通过正则化梯度提升树刻画非线性特征交互\upcite{xgboost}。模型实现采用 scikit-learn 机器学习库\upcite{sklearn}；XGBoost 仅作为补充比较，不替代主推荐模型。对 Logistic Regression 与 SVM-RBF，标准化嵌入 sklearn Pipeline，并且只在训练折内拟合。
 
 评价指标包括 accuracy、balanced accuracy、AUC、sensitivity、specificity 和 F1。其中 sensitivity 表示 PD 类召回率，specificity 表示 Healthy 类召回率。由于 Dataset 1 的 PD 受试者多于 Healthy 受试者，balanced accuracy 与 specificity 对判断模型是否过度偏向 PD 类尤为重要。
 
@@ -21,11 +21,12 @@
 Logistic Regression & 0.7893 & 0.6989 & 0.8353 & 0.8825 & 0.5154 & 0.8616 \\
 Random Forest & 0.8290 & 0.7004 & 0.8511 & 0.9623 & 0.4385 & 0.8936 \\
 SVM-RBF & 0.8171 & 0.7118 & 0.8234 & 0.9249 & 0.4987 & 0.8825 \\
+XGBoost（补充） & 0.8331 & 0.7025 & 0.8741 & 0.9679 & 0.4372 & 0.8965 \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-Dataset 1 中 Random Forest 的 accuracy 和 AUC 较高，分别为 0.8290 和 0.8511，但 specificity 仅为 0.4385，说明该模型在类别不均衡背景下更倾向于判为 PD。SVM-RBF 的 balanced accuracy 为 0.7118，在敏感度和特异度之间相对均衡；Logistic Regression 具有较好的可解释性，但综合指标略低。
+Dataset 1 中 Random Forest 的 accuracy 和 AUC 较高，分别为 0.8290 和 0.8511，但 specificity 仅为 0.4385，说明该模型在类别不均衡背景下更倾向于判为 PD。补充 XGBoost 的 accuracy 和 AUC 分别为 0.8331 和 0.8741，但 specificity 为 0.4372，呈现与 Random Forest 相似的类别偏向。SVM-RBF 的 balanced accuracy 为 0.7118，在敏感度和特异度之间相对均衡；Logistic Regression 具有较好的可解释性，但综合指标略低。因此，XGBoost 结果用于支持非线性集成模型的补充判别能力，而不改变本文对 Dataset 1 主结果的审慎表述。
 
 \begin{table}[H]
 \centering
@@ -38,8 +39,9 @@ Dataset 1 中 Random Forest 的 accuracy 和 AUC 较高，分别为 0.8290 和 0
 Logistic Regression & 0.7875 & 0.7875 & 0.8781 & 0.8250 & 0.7500 & 0.7905 \\
 Random Forest & 0.7875 & 0.7875 & 0.8656 & 0.7250 & 0.8500 & 0.7748 \\
 SVM-RBF & 0.8375 & 0.8375 & 0.8906 & 0.8000 & 0.8750 & 0.8300 \\
+XGBoost（补充） & 0.7875 & 0.7875 & 0.8563 & 0.7250 & 0.8500 & 0.7748 \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-Dataset 2 中 SVM-RBF 的 accuracy、balanced accuracy 和 AUC 均最高，specificity 也达到 0.8750，因此在该数据集上作为主推荐诊断模型。Random Forest 的 specificity 较高但 sensitivity 较低，提示其对 Healthy 类更保守；Logistic Regression 的 sensitivity 较高但整体 accuracy 低于 SVM-RBF。
+Dataset 2 中 SVM-RBF 的 accuracy、balanced accuracy 和 AUC 均最高，specificity 也达到 0.8750，因此在该数据集上作为主推荐诊断模型。补充 XGBoost 的综合表现与 Random Forest 接近，未超过 SVM-RBF。Random Forest 的 specificity 较高但 sensitivity 较低，提示其对 Healthy 类更保守；Logistic Regression 的 sensitivity 较高但整体 accuracy 低于 SVM-RBF。

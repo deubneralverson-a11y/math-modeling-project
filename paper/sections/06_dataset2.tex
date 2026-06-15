@@ -2,8 +2,8 @@
 
 Dataset 2 包含 80 名受试者、240 条录音，每名受试者 3 次录音，受试者级 Healthy 与 PD 各 40 名，类别均衡。该数据集的声学特征数为 44，与 Dataset 1 的高维 TQWT 特征空间不同，因此本文将其作为独立数据集单独建模和解释，而不与 Dataset 1 直接合并训练。
 
-建模流程与模型一保持一致：输入为 acoustic-only 特征，模型包括 Logistic Regression、SVM-RBF 和 Random Forest，交叉验证采用 StratifiedGroupKFold 并按 \feature{ID} 分组。标准化嵌入 Pipeline，仅在训练折内拟合。输出为受试者级 PD/Healthy 辅助诊断结果。
+建模流程与模型一保持一致：输入为 acoustic-only 特征，主模型包括 Logistic Regression、SVM-RBF 和 Random Forest，并以 XGBoost 作为补充集成模型参考。交叉验证采用 StratifiedGroupKFold 并按 \feature{ID} 分组。标准化嵌入 Pipeline，仅在训练折内拟合。输出为受试者级 PD/Healthy 辅助诊断结果。
 
-从表 2 可见，SVM-RBF 在 Dataset 2 上取得 accuracy 0.8375、balanced accuracy 0.8375、AUC 0.8906、sensitivity 0.8000、specificity 0.8750 和 F1 0.8300，综合表现最好。Random Forest 的 specificity 较高但 sensitivity 较低，提示其对 Healthy 类更保守；Logistic Regression 的 sensitivity 较高但整体 accuracy 低于 SVM-RBF。
+从表 2 可见，SVM-RBF 在 Dataset 2 上取得 accuracy 0.8375、balanced accuracy 0.8375、AUC 0.8906、sensitivity 0.8000、specificity 0.8750 和 F1 0.8300，综合表现最好。补充 XGBoost 的 accuracy 和 balanced accuracy 均为 0.7875，AUC 为 0.8563，未超过 SVM-RBF。Random Forest 的 specificity 较高但 sensitivity 较低，提示其对 Healthy 类更保守；Logistic Regression 的 sensitivity 较高但整体 accuracy 低于 SVM-RBF。
 
 Dataset 2 样本量较小，但类别均衡、每名受试者录音次数一致，适合作为独立验证风格的参考分析。由于两个数据集特征空间不完全一致，本文不将 Dataset 2 结果解释为 Dataset 1 模型的严格外部验证，而作为同一研究问题下的独立声学诊断建模证据。

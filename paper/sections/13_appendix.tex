@@ -1,17 +1,17 @@
 \appendix
 \section{附录：程序代码}
 
-本附录给出建模、特征识别、潜在表型分析与权重敏感性分析所用的完整代码。为避免正文被程序实现细节打断，代码统一置于附录。
+本附录给出建模、特征识别、潜在表型分析与权重敏感性分析所用的完整代码。XGBoost 补充二分类模型位于代码二，XGBoost 特征重要性与 SHAP 解释性分析位于代码三。为避免正文被程序实现细节打断，代码统一置于附录。
 
 \subsection{代码一：数据预处理与质量控制}
 \VerbatimInput[fontsize=\tiny,breaklines=true,breakanywhere=true,numbers=left,numbersep=4pt,xleftmargin=1.8em]{../src/stage2_qc_pipeline.py}
 
 \clearpage
-\subsection{代码二：二分类辅助诊断模型}
+\subsection{代码二：二分类辅助诊断模型与 XGBoost 补充模型}
 \VerbatimInput[fontsize=\tiny,breaklines=true,breakanywhere=true,numbers=left,numbersep=4pt,xleftmargin=1.8em]{../src/stage3_baseline_models.py}
 
 \clearpage
-\subsection{代码三：判别性声学特征识别}
+\subsection{代码三：判别性声学特征识别与 XGBoost/SHAP 解释性分析}
 \VerbatimInput[fontsize=\tiny,breaklines=true,breakanywhere=true,numbers=left,numbersep=4pt,xleftmargin=1.8em]{../src/stage4_biomarker_identification.py}
 
 \clearpage

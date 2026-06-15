@@ -5,9 +5,9 @@
 \noindent{\heiti 摘要：}
 帕金森病常伴随发声稳定性、声带振动和谱结构等方面的改变，语音声学特征为辅助筛查和探索性分型提供了低侵入、可重复采集的数据基础。本文围绕两个含重复录音结构的帕金森病语音数据集，建立受试者级二分类辅助诊断模型、判别性声学特征综合评价模型以及 PD 内部潜在语音表型无监督分型模型。针对同一受试者多次录音可能导致的样本单位错误，本文将受试者作为核心分析单位；在监督诊断模型中采用按受试者分组的交叉验证，并将标准化、模型训练和相关特征处理限制在训练折内部完成。
 
-对问题一和问题三，本文构建并比较 Logistic Regression、SVM-RBF 和 Random Forest 三类二分类辅助诊断模型。Dataset 1 主分析采用受试者级指标，Random Forest 的准确率和 AUC 分别为 0.8290 和 0.8511，但其特异度为 0.4385，显示模型更偏向识别 PD 类；SVM-RBF 的 balanced accuracy 为 0.7118，综合表现较稳健。Dataset 2 按受试者 ID 分组交叉验证，SVM-RBF 达到 accuracy 0.8375、balanced accuracy 0.8375、AUC 0.8906、specificity 0.8750，作为该数据集的主推荐模型。
+对问题一和问题三，本文构建并比较 Logistic Regression、SVM-RBF 和 Random Forest 三类二分类辅助诊断模型，并以轻量 XGBoost 作为补充集成模型证据。Dataset 1 主分析采用受试者级指标，Random Forest 的准确率和 AUC 分别为 0.8290 和 0.8511，但其特异度为 0.4385，显示模型更偏向识别 PD 类；SVM-RBF 的 balanced accuracy 为 0.7118，综合表现较稳健。补充 XGBoost 在 Dataset 1 acoustic-only 受试者级结果中 accuracy 为 0.8331、AUC 为 0.8741，但 specificity 为 0.4372，同样提示模型更偏向 PD 识别，因此不改变主推荐口径。Dataset 2 按受试者 ID 分组交叉验证，SVM-RBF 达到 accuracy 0.8375、balanced accuracy 0.8375、AUC 0.8906、specificity 0.8750，作为该数据集的主推荐模型。
 
-对问题二，本文在 Dataset 1 受试者级数据上整合 Mann-Whitney U 检验、Welch t-test、FDR-BH 校正、Cohen's \(d\)、Cliff's delta、L1 Logistic 稳定选择、ExtraTrees 重要性和 held-out permutation importance，得到候选语音生物标志物综合排序。Top20 特征主要包括 Delta / Delta-delta 动态谱波动特征与 TQWT 多尺度特征；Top50 中 TQWT 特征 31 个、Delta / Delta-delta 特征 16 个、Shimmer、MFCC 和 Nonlinear 特征各 1 个。上述结果仅表示判别性声学特征或候选语音生物标志物，不构成临床因果解释。
+对问题二，本文在 Dataset 1 受试者级数据上整合 Mann-Whitney U 检验、Welch t-test、FDR-BH 校正、Cohen's \(d\)、Cliff's delta、L1 Logistic 稳定选择、ExtraTrees 重要性和 held-out permutation importance，得到候选语音生物标志物综合排序；同时采用 XGBoost 特征重要性和 held-out-fold SHAP 平均绝对贡献作为补充解释证据。Top20 特征主要包括 Delta / Delta-delta 动态谱波动特征与 TQWT 多尺度特征；Top50 中 TQWT 特征 31 个、Delta / Delta-delta 特征 16 个、Shimmer、MFCC 和 Nonlinear 特征各 1 个。SHAP 与 XGBoost 重要性进一步支持 Delta / Delta-delta 与 TQWT 特征的判别贡献，但不参与主排序计算，也不进入后续 PD 内部分型。上述结果仅表示判别性声学特征或候选语音生物标志物，不构成临床因果解释。
 
 对问题四和问题五，由于数据集中没有真实运动型/非运动型标签，也没有静止性震颤、运动迟缓、肌肉僵直、疼痛、痴呆、睡眠障碍六类临床症状标签，本文仅在 Dataset 1 的 188 名 PD 受试者内部进行无监督潜在语音表型分析。二类潜在语音表型采用多候选报告口径，其中 \feature{top20_biomarkers} / \feature{pca_5} / KMeans 的权重敏感性 top-1 频率最高，为 37.3\%，因此作为相对推荐候选方案，而不作为唯一稳健最优结论。六类潜在语音表型采用 \feature{top20_biomarkers} / \feature{pca_5} / AgglomerativeClustering，其权重敏感性 top-1 频率为 87.1\%，可作为 \(k=6\) 潜在语音表型聚类的稳健主推荐方案。上述分型结果均不应解释为已经由临床标签确认的真实亚型或症状类别。
 
