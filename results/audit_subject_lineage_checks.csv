@@ -10,7 +10,7 @@ Stage 2,Dataset 1 subject record count distribution,"{2: 1, 3: 251}","{2: 1, 3: 
 Stage 2,dataset1_class_sex_male_crosstab_subject.csv exists,file exists,results/dataset1_class_sex_male_crosstab_subject.csv,pass,medium,results/dataset1_class_sex_male_crosstab_subject.csv,
 Stage 2,dataset2_class_sex_male_crosstab_subject.csv exists,file exists,results/dataset2_class_sex_male_crosstab_subject.csv,pass,medium,results/dataset2_class_sex_male_crosstab_subject.csv,
 Stage 3,Subject-level metrics include required clinical metrics,"['balanced_accuracy', 'roc_auc', 'sensitivity', 'specificity']","['balanced_accuracy', 'roc_auc', 'sensitivity', 'specificity']",pass,medium,results/stage3_baseline_metrics_subject_level.csv,
-Stage 3,Main subject-level acoustic_only results exist,summary rows for acoustic_only,6,pass,high,results/stage3_baseline_metrics_subject_level.csv,
+Stage 3,Main subject-level acoustic_only results exist,summary rows for acoustic_only,8,pass,high,results/stage3_baseline_metrics_subject_level.csv,
 Stage 4,Subject-level row count,252,252,pass,critical,results/stage4_subject_level_feature_table_dataset1.csv,
 Stage 4,Subject-level class distribution,"{0: 64, 1: 188}","{0: 64, 1: 188}",pass,critical,results/stage4_subject_level_feature_table_dataset1.csv,
 Stage 4,Subject-level acoustic feature count,752,752,pass,critical,results/stage4_subject_level_feature_table_dataset1.csv,

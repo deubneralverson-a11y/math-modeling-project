@@ -18,6 +18,18 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
+try:
+    import shap
+    from xgboost import XGBClassifier
+
+    HAS_XGBOOST_SHAP = True
+    XGBOOST_SHAP_IMPORT_ERROR = ""
+except ImportError as exc:
+    shap = None
+    XGBClassifier = None
+    HAS_XGBOOST_SHAP = False
+    XGBOOST_SHAP_IMPORT_ERROR = str(exc)
+
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS_DIR = ROOT / "results"
@@ -35,6 +47,7 @@ L1_CS = [0.01, 0.03, 0.1, 0.3, 1.0]
 COEF_EPSILON = 1e-8
 N_ESTIMATORS = 500
 PERMUTATION_REPEATS = 1
+XGBOOST_N_ESTIMATORS = 120
 
 METADATA_COLUMNS = {"id", "gender", "class", "sex_male"}
 
@@ -374,6 +387,106 @@ def heldout_permutation_importance(
     return importances.mean(axis=1), importances.std(axis=1, ddof=ddof)
 
 
+def make_xgboost_model(fold: int) -> XGBClassifier:
+    return XGBClassifier(
+        n_estimators=XGBOOST_N_ESTIMATORS,
+        max_depth=2,
+        learning_rate=0.05,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        reg_alpha=0.1,
+        reg_lambda=5.0,
+        objective="binary:logistic",
+        eval_metric="logloss",
+        tree_method="hist",
+        random_state=RANDOM_STATE + fold,
+        n_jobs=1,
+    )
+
+
+def positive_class_shap_values(values: Any, n_features: int) -> np.ndarray:
+    if hasattr(values, "values"):
+        values = values.values
+    if isinstance(values, list):
+        values = values[POS_LABEL] if len(values) > POS_LABEL else values[0]
+    array = np.asarray(values)
+    if array.ndim == 3:
+        if array.shape[2] == n_features:
+            array = array[POS_LABEL] if array.shape[0] > POS_LABEL else array[0]
+        else:
+            array = array[:, :, POS_LABEL] if array.shape[2] > POS_LABEL else array[:, :, 0]
+    if array.ndim != 2 or array.shape[1] != n_features:
+        raise ValueError(f"Unexpected SHAP values shape: {array.shape}")
+    return array
+
+
+def run_xgboost_and_shap(
+    subject_table: pd.DataFrame, features: list[str]
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    if not HAS_XGBOOST_SHAP:
+        skipped = pd.DataFrame(
+            {
+                "feature": features,
+                "category": [categorize_feature(feature) for feature in features],
+                "xgboost_importance_mean": np.nan,
+                "xgboost_importance_std": np.nan,
+                "xgboost_import_error": XGBOOST_SHAP_IMPORT_ERROR,
+            }
+        )
+        shap_skipped = pd.DataFrame(
+            {
+                "feature": features,
+                "category": [categorize_feature(feature) for feature in features],
+                "shap_mean_abs_mean": np.nan,
+                "shap_mean_abs_std": np.nan,
+                "shap_import_error": XGBOOST_SHAP_IMPORT_ERROR,
+            }
+        )
+        return skipped, shap_skipped
+
+    x = subject_table[features]
+    y = subject_table["class"].astype(int).to_numpy()
+    xgb_fold_importances: list[np.ndarray] = []
+    shap_fold_importances: list[np.ndarray] = []
+
+    for fold, (train_idx, test_idx) in enumerate(stratified_folds(y).split(x, y), start=1):
+        model = make_xgboost_model(fold)
+        model.fit(x.iloc[train_idx], y[train_idx])
+        xgb_fold_importances.append(model.feature_importances_)
+
+        explainer = shap.TreeExplainer(model)
+        shap_values = positive_class_shap_values(
+            explainer.shap_values(x.iloc[test_idx]),
+            len(features),
+        )
+        shap_fold_importances.append(np.abs(shap_values).mean(axis=0))
+
+    xgb_array = np.vstack(xgb_fold_importances)
+    shap_array = np.vstack(shap_fold_importances)
+    xgb = pd.DataFrame(
+        {
+            "feature": features,
+            "category": [categorize_feature(feature) for feature in features],
+            "xgboost_importance_mean": xgb_array.mean(axis=0),
+            "xgboost_importance_std": xgb_array.std(axis=0, ddof=1),
+        }
+    ).sort_values("xgboost_importance_mean", ascending=False)
+    xgb["rank_xgboost_importance"] = rank_desc(xgb["xgboost_importance_mean"])
+
+    shap_importance = pd.DataFrame(
+        {
+            "feature": features,
+            "category": [categorize_feature(feature) for feature in features],
+            "shap_mean_abs_mean": shap_array.mean(axis=0),
+            "shap_mean_abs_std": shap_array.std(axis=0, ddof=1),
+        }
+    ).sort_values("shap_mean_abs_mean", ascending=False)
+    shap_importance["rank_shap_mean_abs"] = rank_desc(
+        shap_importance["shap_mean_abs_mean"]
+    )
+    return xgb, shap_importance
+
+
 def categorize_feature(feature: str) -> str:
     name = feature.lower()
     if "tqwt" in name:
@@ -419,6 +532,8 @@ def build_rank_summary(
     l1: pd.DataFrame,
     tree: pd.DataFrame,
     permutation: pd.DataFrame,
+    xgboost_importance: pd.DataFrame | None = None,
+    shap_importance: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
     summary = (
         univariate[
@@ -470,6 +585,32 @@ def build_rank_summary(
             how="left",
         )
     )
+    if xgboost_importance is not None:
+        summary = summary.merge(
+            xgboost_importance[
+                [
+                    "feature",
+                    "xgboost_importance_mean",
+                    "xgboost_importance_std",
+                    "rank_xgboost_importance",
+                ]
+            ],
+            on="feature",
+            how="left",
+        )
+    if shap_importance is not None:
+        summary = summary.merge(
+            shap_importance[
+                [
+                    "feature",
+                    "shap_mean_abs_mean",
+                    "shap_mean_abs_std",
+                    "rank_shap_mean_abs",
+                ]
+            ],
+            on="feature",
+            how="left",
+        )
     summary["rank_q_mannwhitney"] = rank_asc(summary["q_mannwhitney"])
     summary["rank_abs_cohens_d"] = rank_desc(summary["abs_cohens_d"])
     summary["rank_abs_cliffs_delta"] = rank_desc(summary["abs_cliffs_delta"])
@@ -575,11 +716,27 @@ def save_volcano_plot(univariate: pd.DataFrame) -> None:
     plt.close(fig)
 
 
+def save_shap_top20_plot(shap_importance: pd.DataFrame) -> None:
+    if shap_importance["shap_mean_abs_mean"].isna().all():
+        return
+    top20 = shap_importance.head(20).sort_values("shap_mean_abs_mean", ascending=True)
+    fig, ax = plt.subplots(figsize=(11, 8), dpi=150)
+    ax.barh(top20["feature"], top20["shap_mean_abs_mean"], color="#7a5195")
+    ax.set_xlabel("Mean absolute SHAP value")
+    ax.set_ylabel("Feature")
+    ax.set_title("Stage 4 Supplemental XGBoost SHAP Top 20")
+    fig.tight_layout()
+    fig.savefig(FIGURES_DIR / "stage4_shap_top20_mean_abs.png")
+    plt.close(fig)
+
+
 def write_report(
     audit: dict[str, Any],
     summary: pd.DataFrame,
     univariate: pd.DataFrame,
     l1: pd.DataFrame,
+    xgboost_importance: pd.DataFrame,
+    shap_importance: pd.DataFrame,
 ) -> None:
     dataset2_ref = (
         f"`{rel(DATASET2_REFERENCE_PATH)}` exists"
@@ -598,6 +755,8 @@ def write_report(
         "permutation_importance_mean",
         "tree_importance_mean",
     ]
+    if {"xgboost_importance_mean", "shap_mean_abs_mean"}.issubset(summary.columns):
+        top20_cols.extend(["xgboost_importance_mean", "shap_mean_abs_mean"])
     top10 = summary.head(10)[top20_cols].copy()
     top20 = summary.head(20)[top20_cols].copy()
     top50 = summary.head(50)[["feature", "category", "mean_rank", "rank_score"]].copy()
@@ -635,7 +794,7 @@ def write_report(
         "- Univariate screening used Mann-Whitney U, Welch t-test, FDR-BH correction, Cohen's d, and Cliff's delta.",
         "- L1 stability selection used subject-level StratifiedKFold; scaling and L1 Logistic were fit only inside training folds.",
         "- ExtraTrees and permutation importance used subject-level StratifiedKFold; permutation importance was computed on held-out folds.",
-        "- SHAP was not run because it is optional and unavailable in the current project environment.",
+        "- XGBoost and SHAP are supplemental evidence only; they are not included in the mean-rank formula and do not change Top 10/20/50 membership.",
         "- These features are exploratory biomarker candidates for modeling interpretation and require independent validation.",
         "- Some near-constant features were selected by L1, so L1 stability is treated as one evidence source rather than a standalone final conclusion.",
         f"- Permutation importance is sparse (`{nonzero_permutation_count}` of `{summary.shape[0]}` features have positive mean importance), which may reflect substitution effects among high-dimensional correlated acoustic features.",
@@ -653,6 +812,13 @@ def write_report(
         "",
         markdown_table(top50, floatfmt=".5f"),
         "",
+        "## Supplemental XGBoost/SHAP evidence",
+        "",
+        f"- XGBoost/SHAP available: `{HAS_XGBOOST_SHAP}`.",
+        f"- XGBoost/SHAP import error: `{XGBOOST_SHAP_IMPORT_ERROR}`.",
+        f"- Top SHAP feature: `{shap_importance.iloc[0]['feature'] if not shap_importance.empty else ''}`.",
+        f"- Top XGBoost importance feature: `{xgboost_importance.iloc[0]['feature'] if not xgboost_importance.empty else ''}`.",
+        "",
         "## Output files",
         "",
         "- `results/stage4_subject_level_feature_table_dataset1.csv`",
@@ -661,6 +827,8 @@ def write_report(
         "- `results/stage4_l1_stability_selection_dataset1.csv`",
         "- `results/stage4_tree_importance_dataset1.csv`",
         "- `results/stage4_permutation_importance_dataset1.csv`",
+        "- `results/stage4_xgboost_importance_dataset1.csv`",
+        "- `results/stage4_shap_importance_dataset1.csv`",
         "- `results/stage4_biomarker_rank_summary_dataset1.csv`",
         "- `results/stage4_top10_biomarkers_dataset1.csv`",
         "- `results/stage4_top20_biomarkers_dataset1.csv`",
@@ -669,12 +837,14 @@ def write_report(
         "- `results/figures/stage4_top20_effect_size.png`",
         "- `results/figures/stage4_feature_category_counts_top50.png`",
         "- `results/figures/stage4_volcano_plot_dataset1.png`",
+        "- `results/figures/stage4_shap_top20_mean_abs.png`",
         "",
         "## Guardrails",
         "",
         "- The 755 recordings were not treated as independent samples for significance testing.",
         "- Metadata and sex variables were excluded from the main acoustic feature list.",
         "- Final ranking combines univariate, stability, permutation, and tree-based evidence rather than relying only on tree importance.",
+        "- Supplemental XGBoost/SHAP evidence is not used by Stage 5 or Stage 6.",
         "- The report uses associative interpretation only.",
         "",
         f"Univariate features with FDR q < 0.05: `{int((univariate['q_mannwhitney'] < 0.05).sum())}`",
@@ -727,12 +897,17 @@ def main() -> None:
     l1["l1_selected_any"] = l1["selected_folds"] > 0
     l1["l1_selected_near_constant"] = l1["l1_selected_any"] & l1["is_near_constant"]
     tree, permutation = run_tree_and_permutation(subject_table, features)
+    xgboost_importance, shap_importance = run_xgboost_and_shap(subject_table, features)
     tree = merge_feature_audit(tree, feature_audit)
     permutation = merge_feature_audit(permutation, feature_audit)
+    xgboost_importance = merge_feature_audit(xgboost_importance, feature_audit)
+    shap_importance = merge_feature_audit(shap_importance, feature_audit)
     permutation["permutation_importance_positive"] = (
         permutation["permutation_importance_mean"] > 0
     )
-    summary = build_rank_summary(univariate, l1, tree, permutation)
+    summary = build_rank_summary(
+        univariate, l1, tree, permutation, xgboost_importance, shap_importance
+    )
     top20 = summary.head(20).copy()
     top10 = summary.head(10).copy()
     top50 = summary.head(50).copy()
@@ -762,6 +937,14 @@ def main() -> None:
         RESULTS_DIR / "stage4_permutation_importance_dataset1.csv",
     )
     write_csv(
+        xgboost_importance,
+        RESULTS_DIR / "stage4_xgboost_importance_dataset1.csv",
+    )
+    write_csv(
+        shap_importance,
+        RESULTS_DIR / "stage4_shap_importance_dataset1.csv",
+    )
+    write_csv(
         summary,
         RESULTS_DIR / "stage4_biomarker_rank_summary_dataset1.csv",
     )
@@ -782,7 +965,8 @@ def main() -> None:
     save_top20_effect_size_plot(summary)
     save_top50_category_plot(summary)
     save_volcano_plot(univariate)
-    write_report(audit, summary, univariate, l1)
+    save_shap_top20_plot(shap_importance)
+    write_report(audit, summary, univariate, l1, xgboost_importance, shap_importance)
 
 
 if __name__ == "__main__":

@@ -5,141 +5,189 @@ dataset1,Dataset 1,acoustic_only,SVM-RBF,record,1,fold,27,12,4,110
 dataset1,Dataset 1,acoustic_only,SVM-RBF,subject,1,fold,10,3,1,37
 dataset1,Dataset 1,acoustic_only,Random Forest,record,1,fold,22,17,0,114
 dataset1,Dataset 1,acoustic_only,Random Forest,subject,1,fold,8,5,0,38
+dataset1,Dataset 1,acoustic_only,XGBoost (supplemental),record,1,fold,23,16,1,113
+dataset1,Dataset 1,acoustic_only,XGBoost (supplemental),subject,1,fold,8,5,1,37
 dataset1,Dataset 1,acoustic_plus_sex,Logistic Regression,record,1,fold,22,17,11,103
 dataset1,Dataset 1,acoustic_plus_sex,Logistic Regression,subject,1,fold,7,6,3,35
 dataset1,Dataset 1,acoustic_plus_sex,SVM-RBF,record,1,fold,27,12,4,110
 dataset1,Dataset 1,acoustic_plus_sex,SVM-RBF,subject,1,fold,10,3,1,37
 dataset1,Dataset 1,acoustic_plus_sex,Random Forest,record,1,fold,21,18,1,113
 dataset1,Dataset 1,acoustic_plus_sex,Random Forest,subject,1,fold,7,6,1,37
+dataset1,Dataset 1,acoustic_plus_sex,XGBoost (supplemental),record,1,fold,22,17,2,112
+dataset1,Dataset 1,acoustic_plus_sex,XGBoost (supplemental),subject,1,fold,8,5,1,37
 dataset1,Dataset 1,acoustic_only,Logistic Regression,record,2,fold,21,18,21,90
 dataset1,Dataset 1,acoustic_only,Logistic Regression,subject,2,fold,6,7,7,30
 dataset1,Dataset 1,acoustic_only,SVM-RBF,record,2,fold,23,16,16,95
 dataset1,Dataset 1,acoustic_only,SVM-RBF,subject,2,fold,6,7,5,32
 dataset1,Dataset 1,acoustic_only,Random Forest,record,2,fold,15,24,12,99
 dataset1,Dataset 1,acoustic_only,Random Forest,subject,2,fold,5,8,3,34
+dataset1,Dataset 1,acoustic_only,XGBoost (supplemental),record,2,fold,17,22,6,105
+dataset1,Dataset 1,acoustic_only,XGBoost (supplemental),subject,2,fold,5,8,2,35
 dataset1,Dataset 1,acoustic_plus_sex,Logistic Regression,record,2,fold,22,17,21,90
 dataset1,Dataset 1,acoustic_plus_sex,Logistic Regression,subject,2,fold,6,7,7,30
 dataset1,Dataset 1,acoustic_plus_sex,SVM-RBF,record,2,fold,23,16,16,95
 dataset1,Dataset 1,acoustic_plus_sex,SVM-RBF,subject,2,fold,6,7,5,32
 dataset1,Dataset 1,acoustic_plus_sex,Random Forest,record,2,fold,16,23,10,101
 dataset1,Dataset 1,acoustic_plus_sex,Random Forest,subject,2,fold,5,8,3,34
+dataset1,Dataset 1,acoustic_plus_sex,XGBoost (supplemental),record,2,fold,16,23,4,107
+dataset1,Dataset 1,acoustic_plus_sex,XGBoost (supplemental),subject,2,fold,5,8,2,35
 dataset1,Dataset 1,acoustic_only,Logistic Regression,record,3,fold,17,19,17,97
 dataset1,Dataset 1,acoustic_only,Logistic Regression,subject,3,fold,6,6,4,34
 dataset1,Dataset 1,acoustic_only,SVM-RBF,record,3,fold,16,20,2,112
 dataset1,Dataset 1,acoustic_only,SVM-RBF,subject,3,fold,5,7,0,38
 dataset1,Dataset 1,acoustic_only,Random Forest,record,3,fold,17,19,1,113
 dataset1,Dataset 1,acoustic_only,Random Forest,subject,3,fold,6,6,0,38
+dataset1,Dataset 1,acoustic_only,XGBoost (supplemental),record,3,fold,15,21,0,114
+dataset1,Dataset 1,acoustic_only,XGBoost (supplemental),subject,3,fold,5,7,0,38
 dataset1,Dataset 1,acoustic_plus_sex,Logistic Regression,record,3,fold,18,18,17,97
 dataset1,Dataset 1,acoustic_plus_sex,Logistic Regression,subject,3,fold,7,5,3,35
 dataset1,Dataset 1,acoustic_plus_sex,SVM-RBF,record,3,fold,16,20,2,112
 dataset1,Dataset 1,acoustic_plus_sex,SVM-RBF,subject,3,fold,5,7,0,38
 dataset1,Dataset 1,acoustic_plus_sex,Random Forest,record,3,fold,17,19,1,113
 dataset1,Dataset 1,acoustic_plus_sex,Random Forest,subject,3,fold,6,6,0,38
+dataset1,Dataset 1,acoustic_plus_sex,XGBoost (supplemental),record,3,fold,16,20,1,113
+dataset1,Dataset 1,acoustic_plus_sex,XGBoost (supplemental),subject,3,fold,6,6,0,38
 dataset1,Dataset 1,acoustic_only,Logistic Regression,record,4,fold,25,14,12,101
 dataset1,Dataset 1,acoustic_only,Logistic Regression,subject,4,fold,8,5,3,35
 dataset1,Dataset 1,acoustic_only,SVM-RBF,record,4,fold,19,20,10,103
 dataset1,Dataset 1,acoustic_only,SVM-RBF,subject,4,fold,6,7,3,35
 dataset1,Dataset 1,acoustic_only,Random Forest,record,4,fold,19,20,4,109
 dataset1,Dataset 1,acoustic_only,Random Forest,subject,4,fold,6,7,1,37
+dataset1,Dataset 1,acoustic_only,XGBoost (supplemental),record,4,fold,17,22,5,108
+dataset1,Dataset 1,acoustic_only,XGBoost (supplemental),subject,4,fold,6,7,1,37
 dataset1,Dataset 1,acoustic_plus_sex,Logistic Regression,record,4,fold,25,14,13,100
 dataset1,Dataset 1,acoustic_plus_sex,Logistic Regression,subject,4,fold,8,5,3,35
 dataset1,Dataset 1,acoustic_plus_sex,SVM-RBF,record,4,fold,19,20,10,103
 dataset1,Dataset 1,acoustic_plus_sex,SVM-RBF,subject,4,fold,6,7,3,35
 dataset1,Dataset 1,acoustic_plus_sex,Random Forest,record,4,fold,19,20,4,109
 dataset1,Dataset 1,acoustic_plus_sex,Random Forest,subject,4,fold,6,7,2,36
+dataset1,Dataset 1,acoustic_plus_sex,XGBoost (supplemental),record,4,fold,18,21,6,107
+dataset1,Dataset 1,acoustic_plus_sex,XGBoost (supplemental),subject,4,fold,6,7,1,37
 dataset1,Dataset 1,acoustic_only,Logistic Regression,record,5,fold,17,22,12,99
 dataset1,Dataset 1,acoustic_only,Logistic Regression,subject,5,fold,6,7,5,32
 dataset1,Dataset 1,acoustic_only,SVM-RBF,record,5,fold,20,19,15,96
 dataset1,Dataset 1,acoustic_only,SVM-RBF,subject,5,fold,5,8,5,32
 dataset1,Dataset 1,acoustic_only,Random Forest,record,5,fold,6,33,10,101
 dataset1,Dataset 1,acoustic_only,Random Forest,subject,5,fold,3,10,3,34
+dataset1,Dataset 1,acoustic_only,XGBoost (supplemental),record,5,fold,11,28,5,106
+dataset1,Dataset 1,acoustic_only,XGBoost (supplemental),subject,5,fold,4,9,2,35
 dataset1,Dataset 1,acoustic_plus_sex,Logistic Regression,record,5,fold,17,22,12,99
 dataset1,Dataset 1,acoustic_plus_sex,Logistic Regression,subject,5,fold,6,7,5,32
 dataset1,Dataset 1,acoustic_plus_sex,SVM-RBF,record,5,fold,19,20,16,95
 dataset1,Dataset 1,acoustic_plus_sex,SVM-RBF,subject,5,fold,5,8,5,32
 dataset1,Dataset 1,acoustic_plus_sex,Random Forest,record,5,fold,9,30,10,101
 dataset1,Dataset 1,acoustic_plus_sex,Random Forest,subject,5,fold,3,10,3,34
+dataset1,Dataset 1,acoustic_plus_sex,XGBoost (supplemental),record,5,fold,12,27,8,103
+dataset1,Dataset 1,acoustic_plus_sex,XGBoost (supplemental),subject,5,fold,4,9,3,34
 dataset2,Dataset 2,acoustic_only,Logistic Regression,record,1,fold,18,6,2,22
 dataset2,Dataset 2,acoustic_only,Logistic Regression,subject,1,fold,6,2,0,8
 dataset2,Dataset 2,acoustic_only,SVM-RBF,record,1,fold,22,2,3,21
 dataset2,Dataset 2,acoustic_only,SVM-RBF,subject,1,fold,8,0,1,7
 dataset2,Dataset 2,acoustic_only,Random Forest,record,1,fold,22,2,5,19
 dataset2,Dataset 2,acoustic_only,Random Forest,subject,1,fold,8,0,2,6
+dataset2,Dataset 2,acoustic_only,XGBoost (supplemental),record,1,fold,22,2,6,18
+dataset2,Dataset 2,acoustic_only,XGBoost (supplemental),subject,1,fold,8,0,2,6
 dataset2,Dataset 2,acoustic_plus_sex,Logistic Regression,record,1,fold,20,4,5,19
 dataset2,Dataset 2,acoustic_plus_sex,Logistic Regression,subject,1,fold,7,1,1,7
 dataset2,Dataset 2,acoustic_plus_sex,SVM-RBF,record,1,fold,23,1,1,23
 dataset2,Dataset 2,acoustic_plus_sex,SVM-RBF,subject,1,fold,8,0,1,7
 dataset2,Dataset 2,acoustic_plus_sex,Random Forest,record,1,fold,24,0,5,19
 dataset2,Dataset 2,acoustic_plus_sex,Random Forest,subject,1,fold,8,0,2,6
+dataset2,Dataset 2,acoustic_plus_sex,XGBoost (supplemental),record,1,fold,22,2,4,20
+dataset2,Dataset 2,acoustic_plus_sex,XGBoost (supplemental),subject,1,fold,8,0,2,6
 dataset2,Dataset 2,acoustic_only,Logistic Regression,record,2,fold,19,5,7,17
 dataset2,Dataset 2,acoustic_only,Logistic Regression,subject,2,fold,7,1,0,8
 dataset2,Dataset 2,acoustic_only,SVM-RBF,record,2,fold,20,4,4,20
 dataset2,Dataset 2,acoustic_only,SVM-RBF,subject,2,fold,7,1,2,6
 dataset2,Dataset 2,acoustic_only,Random Forest,record,2,fold,20,4,6,18
 dataset2,Dataset 2,acoustic_only,Random Forest,subject,2,fold,7,1,2,6
+dataset2,Dataset 2,acoustic_only,XGBoost (supplemental),record,2,fold,20,4,3,21
+dataset2,Dataset 2,acoustic_only,XGBoost (supplemental),subject,2,fold,7,1,2,6
 dataset2,Dataset 2,acoustic_plus_sex,Logistic Regression,record,2,fold,20,4,12,12
 dataset2,Dataset 2,acoustic_plus_sex,Logistic Regression,subject,2,fold,7,1,4,4
 dataset2,Dataset 2,acoustic_plus_sex,SVM-RBF,record,2,fold,20,4,6,18
 dataset2,Dataset 2,acoustic_plus_sex,SVM-RBF,subject,2,fold,7,1,2,6
 dataset2,Dataset 2,acoustic_plus_sex,Random Forest,record,2,fold,20,4,6,18
 dataset2,Dataset 2,acoustic_plus_sex,Random Forest,subject,2,fold,7,1,3,5
+dataset2,Dataset 2,acoustic_plus_sex,XGBoost (supplemental),record,2,fold,20,4,7,17
+dataset2,Dataset 2,acoustic_plus_sex,XGBoost (supplemental),subject,2,fold,7,1,3,5
 dataset2,Dataset 2,acoustic_only,Logistic Regression,record,3,fold,18,6,6,18
 dataset2,Dataset 2,acoustic_only,Logistic Regression,subject,3,fold,5,3,2,6
 dataset2,Dataset 2,acoustic_only,SVM-RBF,record,3,fold,18,6,7,17
 dataset2,Dataset 2,acoustic_only,SVM-RBF,subject,3,fold,6,2,3,5
 dataset2,Dataset 2,acoustic_only,Random Forest,record,3,fold,19,5,7,17
 dataset2,Dataset 2,acoustic_only,Random Forest,subject,3,fold,6,2,3,5
+dataset2,Dataset 2,acoustic_only,XGBoost (supplemental),record,3,fold,18,6,8,16
+dataset2,Dataset 2,acoustic_only,XGBoost (supplemental),subject,3,fold,6,2,3,5
 dataset2,Dataset 2,acoustic_plus_sex,Logistic Regression,record,3,fold,16,8,4,20
 dataset2,Dataset 2,acoustic_plus_sex,Logistic Regression,subject,3,fold,5,3,1,7
 dataset2,Dataset 2,acoustic_plus_sex,SVM-RBF,record,3,fold,18,6,7,17
 dataset2,Dataset 2,acoustic_plus_sex,SVM-RBF,subject,3,fold,6,2,2,6
 dataset2,Dataset 2,acoustic_plus_sex,Random Forest,record,3,fold,18,6,7,17
 dataset2,Dataset 2,acoustic_plus_sex,Random Forest,subject,3,fold,6,2,3,5
+dataset2,Dataset 2,acoustic_plus_sex,XGBoost (supplemental),record,3,fold,18,6,7,17
+dataset2,Dataset 2,acoustic_plus_sex,XGBoost (supplemental),subject,3,fold,6,2,3,5
 dataset2,Dataset 2,acoustic_only,Logistic Regression,record,4,fold,19,5,10,14
 dataset2,Dataset 2,acoustic_only,Logistic Regression,subject,4,fold,6,2,3,5
 dataset2,Dataset 2,acoustic_only,SVM-RBF,record,4,fold,19,5,5,19
 dataset2,Dataset 2,acoustic_only,SVM-RBF,subject,4,fold,7,1,1,7
 dataset2,Dataset 2,acoustic_only,Random Forest,record,4,fold,17,7,6,18
 dataset2,Dataset 2,acoustic_only,Random Forest,subject,4,fold,6,2,2,6
+dataset2,Dataset 2,acoustic_only,XGBoost (supplemental),record,4,fold,17,7,6,18
+dataset2,Dataset 2,acoustic_only,XGBoost (supplemental),subject,4,fold,6,2,2,6
 dataset2,Dataset 2,acoustic_plus_sex,Logistic Regression,record,4,fold,20,4,7,17
 dataset2,Dataset 2,acoustic_plus_sex,Logistic Regression,subject,4,fold,7,1,2,6
 dataset2,Dataset 2,acoustic_plus_sex,SVM-RBF,record,4,fold,21,3,5,19
 dataset2,Dataset 2,acoustic_plus_sex,SVM-RBF,subject,4,fold,7,1,1,7
 dataset2,Dataset 2,acoustic_plus_sex,Random Forest,record,4,fold,17,7,6,18
 dataset2,Dataset 2,acoustic_plus_sex,Random Forest,subject,4,fold,6,2,2,6
+dataset2,Dataset 2,acoustic_plus_sex,XGBoost (supplemental),record,4,fold,17,7,6,18
+dataset2,Dataset 2,acoustic_plus_sex,XGBoost (supplemental),subject,4,fold,6,2,2,6
 dataset2,Dataset 2,acoustic_only,Logistic Regression,record,5,fold,19,5,7,17
 dataset2,Dataset 2,acoustic_only,Logistic Regression,subject,5,fold,6,2,2,6
 dataset2,Dataset 2,acoustic_only,SVM-RBF,record,5,fold,19,5,6,18
 dataset2,Dataset 2,acoustic_only,SVM-RBF,subject,5,fold,7,1,1,7
 dataset2,Dataset 2,acoustic_only,Random Forest,record,5,fold,20,4,7,17
 dataset2,Dataset 2,acoustic_only,Random Forest,subject,5,fold,7,1,2,6
+dataset2,Dataset 2,acoustic_only,XGBoost (supplemental),record,5,fold,21,3,7,17
+dataset2,Dataset 2,acoustic_only,XGBoost (supplemental),subject,5,fold,7,1,2,6
 dataset2,Dataset 2,acoustic_plus_sex,Logistic Regression,record,5,fold,19,5,6,18
 dataset2,Dataset 2,acoustic_plus_sex,Logistic Regression,subject,5,fold,6,2,2,6
 dataset2,Dataset 2,acoustic_plus_sex,SVM-RBF,record,5,fold,19,5,7,17
 dataset2,Dataset 2,acoustic_plus_sex,SVM-RBF,subject,5,fold,7,1,2,6
 dataset2,Dataset 2,acoustic_plus_sex,Random Forest,record,5,fold,19,5,7,17
 dataset2,Dataset 2,acoustic_plus_sex,Random Forest,subject,5,fold,7,1,2,6
+dataset2,Dataset 2,acoustic_plus_sex,XGBoost (supplemental),record,5,fold,20,4,7,17
+dataset2,Dataset 2,acoustic_plus_sex,XGBoost (supplemental),subject,5,fold,8,0,2,6
 dataset1,Dataset 1,acoustic_only,Logistic Regression,record,,aggregate,102,90,73,490
 dataset1,Dataset 1,acoustic_only,Logistic Regression,subject,,aggregate,33,31,22,166
 dataset1,Dataset 1,acoustic_only,Random Forest,record,,aggregate,79,113,27,536
 dataset1,Dataset 1,acoustic_only,Random Forest,subject,,aggregate,28,36,7,181
 dataset1,Dataset 1,acoustic_only,SVM-RBF,record,,aggregate,105,87,47,516
 dataset1,Dataset 1,acoustic_only,SVM-RBF,subject,,aggregate,32,32,14,174
+dataset1,Dataset 1,acoustic_only,XGBoost (supplemental),record,,aggregate,83,109,17,546
+dataset1,Dataset 1,acoustic_only,XGBoost (supplemental),subject,,aggregate,28,36,6,182
 dataset1,Dataset 1,acoustic_plus_sex,Logistic Regression,record,,aggregate,104,88,74,489
 dataset1,Dataset 1,acoustic_plus_sex,Logistic Regression,subject,,aggregate,34,30,21,167
 dataset1,Dataset 1,acoustic_plus_sex,Random Forest,record,,aggregate,82,110,26,537
 dataset1,Dataset 1,acoustic_plus_sex,Random Forest,subject,,aggregate,27,37,9,179
 dataset1,Dataset 1,acoustic_plus_sex,SVM-RBF,record,,aggregate,104,88,48,515
 dataset1,Dataset 1,acoustic_plus_sex,SVM-RBF,subject,,aggregate,32,32,14,174
+dataset1,Dataset 1,acoustic_plus_sex,XGBoost (supplemental),record,,aggregate,84,108,21,542
+dataset1,Dataset 1,acoustic_plus_sex,XGBoost (supplemental),subject,,aggregate,29,35,7,181
 dataset2,Dataset 2,acoustic_only,Logistic Regression,record,,aggregate,93,27,32,88
 dataset2,Dataset 2,acoustic_only,Logistic Regression,subject,,aggregate,30,10,7,33
 dataset2,Dataset 2,acoustic_only,Random Forest,record,,aggregate,98,22,31,89
 dataset2,Dataset 2,acoustic_only,Random Forest,subject,,aggregate,34,6,11,29
 dataset2,Dataset 2,acoustic_only,SVM-RBF,record,,aggregate,98,22,25,95
 dataset2,Dataset 2,acoustic_only,SVM-RBF,subject,,aggregate,35,5,8,32
+dataset2,Dataset 2,acoustic_only,XGBoost (supplemental),record,,aggregate,98,22,30,90
+dataset2,Dataset 2,acoustic_only,XGBoost (supplemental),subject,,aggregate,34,6,11,29
 dataset2,Dataset 2,acoustic_plus_sex,Logistic Regression,record,,aggregate,95,25,34,86
 dataset2,Dataset 2,acoustic_plus_sex,Logistic Regression,subject,,aggregate,32,8,10,30
 dataset2,Dataset 2,acoustic_plus_sex,Random Forest,record,,aggregate,98,22,31,89
 dataset2,Dataset 2,acoustic_plus_sex,Random Forest,subject,,aggregate,34,6,12,28
 dataset2,Dataset 2,acoustic_plus_sex,SVM-RBF,record,,aggregate,101,19,26,94
 dataset2,Dataset 2,acoustic_plus_sex,SVM-RBF,subject,,aggregate,35,5,8,32
+dataset2,Dataset 2,acoustic_plus_sex,XGBoost (supplemental),record,,aggregate,97,23,31,89
+dataset2,Dataset 2,acoustic_plus_sex,XGBoost (supplemental),subject,,aggregate,35,5,12,28

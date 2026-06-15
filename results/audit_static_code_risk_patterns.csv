@@ -100,180 +100,189 @@ src/stage2_qc_pipeline.py,397,gender,"""- `results/figures/gender_distribution_d
 src/stage2_qc_pipeline.py,398,gender,"""- `results/figures/gender_distribution_dataset2.png`"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
 src/stage3_baseline_models.py,3,class,from dataclasses import dataclass,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
 src/stage3_baseline_models.py,20,GroupKFold,from sklearn.model_selection import GroupKFold,safe,Grouped splitters protect subject-level train/test separation.,no
-src/stage3_baseline_models.py,26,GroupKFold,from sklearn.model_selection import StratifiedGroupKFold,safe,Grouped splitters protect subject-level train/test separation.,no
-src/stage3_baseline_models.py,26,StratifiedGroupKFold,from sklearn.model_selection import StratifiedGroupKFold,safe,Grouped splitters protect subject-level train/test separation.,no
-src/stage3_baseline_models.py,31,GroupKFold,StratifiedGroupKFold = None,safe,Grouped splitters protect subject-level train/test separation.,no
-src/stage3_baseline_models.py,31,StratifiedGroupKFold,StratifiedGroupKFold = None,safe,Grouped splitters protect subject-level train/test separation.,no
-src/stage3_baseline_models.py,46,class,@dataclass(frozen=True),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,47,class,class DatasetConfig:,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,51,id,id_col: str,safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,62,id,"id_col=""id"",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,63,class,"label_col=""class"",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,64,id,"metadata_cols=(""id"", ""gender"", ""class""),",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,64,gender,"metadata_cols=(""id"", ""gender"", ""class""),",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,64,class,"metadata_cols=(""id"", ""gender"", ""class""),",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,71,id,"id_col=""ID"",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,71,ID,"id_col=""ID"",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,72,Status,"label_col=""Status"",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,73,ID,"metadata_cols=(""ID"", ""Recording"", ""Status"", ""Gender""),",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,73,Recording,"metadata_cols=(""ID"", ""Recording"", ""Status"", ""Gender""),",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,73,Gender,"metadata_cols=(""ID"", ""Recording"", ""Status"", ""Gender""),",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,73,Status,"metadata_cols=(""ID"", ""Recording"", ""Status"", ""Gender""),",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,102,id,"required = set(config.metadata_cols) | {config.id_col, config.label_col, ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,102,sex_male,"required = set(config.metadata_cols) | {config.id_col, config.label_col, ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,108,id,if df[config.id_col].isna().any():,safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,109,ID,"raise ValueError(f""{config.display_name} has missing subject IDs"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,112,.groupby(,label_unique_by_subject = df.groupby(config.id_col)[config.label_col].nunique(,safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
-src/stage3_baseline_models.py,112,id,label_unique_by_subject = df.groupby(config.id_col)[config.label_col].nunique(,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,121,sex_male,"excluded = set(config.metadata_cols) | {""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,135,sex_male,"""acoustic_plus_sex"": acoustic + [""sex_male""],",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,143,StandardScaler(,"(""scaler"", StandardScaler()),",safe,Supervised-model scaling is inside sklearn Pipeline or no PCA is used in Stage 3/4.,no
-src/stage3_baseline_models.py,152,StandardScaler(,"(""scaler"", StandardScaler()),",safe,Supervised-model scaling is inside sklearn Pipeline or no PCA is used in Stage 3/4.,no
-src/stage3_baseline_models.py,181,GroupKFold,StratifiedGroupKFold(,safe,Grouped splitters protect subject-level train/test separation.,no
-src/stage3_baseline_models.py,181,StratifiedGroupKFold,StratifiedGroupKFold(,safe,Grouped splitters protect subject-level train/test separation.,no
-src/stage3_baseline_models.py,184,GroupKFold,"""StratifiedGroupKFold"",",safe,Grouped splitters protect subject-level train/test separation.,no
-src/stage3_baseline_models.py,184,StratifiedGroupKFold,"""StratifiedGroupKFold"",",safe,Grouped splitters protect subject-level train/test separation.,no
-src/stage3_baseline_models.py,188,GroupKFold,"GroupKFold(n_splits=N_SPLITS),",safe,Grouped splitters protect subject-level train/test separation.,no
-src/stage3_baseline_models.py,189,GroupKFold,"""GroupKFold"",",safe,Grouped splitters protect subject-level train/test separation.,no
-src/stage3_baseline_models.py,203,id,"df: pd.DataFrame, id_col: str, label_col: str",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,205,.groupby(,"labels = df.groupby(id_col, dropna=False)[label_col].first()",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
-src/stage3_baseline_models.py,205,id,"labels = df.groupby(id_col, dropna=False)[label_col].first()",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,213,id,"train_idx: np.ndarray,",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,214,id,"test_idx: np.ndarray,",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,219,id,train_df = df.iloc[train_idx],safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,220,id,test_df = df.iloc[test_idx],safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,221,id,train_subjects = set(train_df[config.id_col]),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,222,id,test_subjects = set(test_df[config.id_col]),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,239,class,"""train_record_class_distribution"": distribution(train_df[config.label_col]),",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage3_baseline_models.py,240,class,"""test_record_class_distribution"": distribution(test_df[config.label_col]),",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage3_baseline_models.py,241,class,"""train_subject_class_distribution"": subject_label_distribution(",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage3_baseline_models.py,242,id,"train_df, config.id_col, config.label_col",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,244,class,"""test_subject_class_distribution"": subject_label_distribution(",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage3_baseline_models.py,245,id,"test_df, config.id_col, config.label_col",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,254,class,classes = list(model.classes_),warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage3_baseline_models.py,255,class,if POS_LABEL not in classes:,warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage3_baseline_models.py,256,class,"raise ValueError(f""Positive label {POS_LABEL} not found in model classes"")",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage3_baseline_models.py,257,class,"return model.predict_proba(x_test)[:, classes.index(POS_LABEL)]",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage3_baseline_models.py,302,id,"""subject_id"": df_test[config.id_col].to_numpy(),",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,308,.groupby(,"pred_df.groupby(""subject_id"", dropna=False)",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
-src/stage3_baseline_models.py,308,id,"pred_df.groupby(""subject_id"", dropna=False)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,312,.groupby(,"label_counts = pred_df.groupby(""subject_id"", dropna=False)[""y_true""].nunique(",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
-src/stage3_baseline_models.py,312,id,"label_counts = pred_df.groupby(""subject_id"", dropna=False)[""y_true""].nunique(",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,369,.groupby(,"for values, group in fold_rows.groupby(group_cols, dropna=False):",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
-src/stage3_baseline_models.py,392,.groupby(,"for values, group in fold_rows.groupby(group_cols, dropna=False):",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
-src/stage3_baseline_models.py,445,id,groups = df[config.id_col],safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,451,.groupby(,df.groupby(config.id_col).size().value_counts().sort_index().to_dict(),safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
-src/stage3_baseline_models.py,451,id,df.groupby(config.id_col).size().value_counts().sort_index().to_dict(),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,467,id,"f""- Subjects: `{df[config.id_col].nunique()}`"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,470,class,"f""- Record-level class distribution: `{distribution(df[config.label_col])}`"",",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage3_baseline_models.py,471,class,"f""- Subject-level class distribution: """,warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage3_baseline_models.py,472,id,"f""`{subject_label_distribution(df, config.id_col, config.label_col)}`"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,480,sex_male,"""- Dataset 2 prepared file only contains metadata cleanup and sex_male """,safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,482,id,"""cross-validation. Scaling for Logistic Regression and SVM-RBF is """,safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,489,GroupKFold,"f""- StratifiedGroupKFold unavailable; fallback reason: `{fallback_reason}`"",",safe,Grouped splitters protect subject-level train/test separation.,no
-src/stage3_baseline_models.py,489,StratifiedGroupKFold,"f""- StratifiedGroupKFold unavailable; fallback reason: `{fallback_reason}`"",",safe,Grouped splitters protect subject-level train/test separation.,no
-src/stage3_baseline_models.py,494,id,"for fold, (train_idx, test_idx) in enumerate(splits, start=1):",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,499,id,"train_idx,",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,500,id,"test_idx,",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,505,id,train_df = df.iloc[train_idx],safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,506,id,test_df = df.iloc[test_idx],safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,508,id,"f""- Fold {fold}: train subjects `{train_df[config.id_col].nunique()}`, """,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,509,id,"f""test subjects `{test_df[config.id_col].nunique()}`, """,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,511,class,"f""test subject classes """,warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage3_baseline_models.py,512,id,"f""`{subject_label_distribution(test_df, config.id_col, config.label_col)}`""",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,534,id,"test_df[config.id_col].nunique(),",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage3_baseline_models.py,623,train_test_split,"""- No row-wise random `train_test_split` was used."",",safe,Only appears in report guardrail text stating it was not used.,no
-src/stage3_baseline_models.py,624,ID,"""- All train/test splits are grouped by subject ID."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,625,id,"""- Standardization is only applied inside sklearn `Pipeline` objects."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,626,SMOTE,"""- No SMOTE, PCA, feature selection, SHAP, clustering, or large grid search was used."",",warning,SMOTE appears; verify it is not used outside grouped CV.,no
-src/stage3_baseline_models.py,626,id,"""- No SMOTE, PCA, feature selection, SHAP, clustering, or large grid search was used."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,626,cluster,"""- No SMOTE, PCA, feature selection, SHAP, clustering, or large grid search was used."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,627,sex_male,"""- `sex_male` is excluded from the main `acoustic_only` models."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage3_baseline_models.py,647,class,"""Positive class: `1 = PD`; negative class: `0 = Healthy`."",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,36,GroupKFold,from sklearn.model_selection import StratifiedGroupKFold,safe,Grouped splitters protect subject-level train/test separation.,no
+src/stage3_baseline_models.py,36,StratifiedGroupKFold,from sklearn.model_selection import StratifiedGroupKFold,safe,Grouped splitters protect subject-level train/test separation.,no
+src/stage3_baseline_models.py,41,GroupKFold,StratifiedGroupKFold = None,safe,Grouped splitters protect subject-level train/test separation.,no
+src/stage3_baseline_models.py,41,StratifiedGroupKFold,StratifiedGroupKFold = None,safe,Grouped splitters protect subject-level train/test separation.,no
+src/stage3_baseline_models.py,56,class,@dataclass(frozen=True),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,57,class,class DatasetConfig:,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,61,id,id_col: str,safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,72,id,"id_col=""id"",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,73,class,"label_col=""class"",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,74,id,"metadata_cols=(""id"", ""gender"", ""class""),",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,74,gender,"metadata_cols=(""id"", ""gender"", ""class""),",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,74,class,"metadata_cols=(""id"", ""gender"", ""class""),",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,81,id,"id_col=""ID"",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,81,ID,"id_col=""ID"",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,82,Status,"label_col=""Status"",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,83,ID,"metadata_cols=(""ID"", ""Recording"", ""Status"", ""Gender""),",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,83,Recording,"metadata_cols=(""ID"", ""Recording"", ""Status"", ""Gender""),",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,83,Gender,"metadata_cols=(""ID"", ""Recording"", ""Status"", ""Gender""),",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,83,Status,"metadata_cols=(""ID"", ""Recording"", ""Status"", ""Gender""),",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,112,id,"required = set(config.metadata_cols) | {config.id_col, config.label_col, ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,112,sex_male,"required = set(config.metadata_cols) | {config.id_col, config.label_col, ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,118,id,if df[config.id_col].isna().any():,safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,119,ID,"raise ValueError(f""{config.display_name} has missing subject IDs"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,122,.groupby(,label_unique_by_subject = df.groupby(config.id_col)[config.label_col].nunique(,safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
+src/stage3_baseline_models.py,122,id,label_unique_by_subject = df.groupby(config.id_col)[config.label_col].nunique(,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,131,sex_male,"excluded = set(config.metadata_cols) | {""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,145,sex_male,"""acoustic_plus_sex"": acoustic + [""sex_male""],",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,153,StandardScaler(,"(""scaler"", StandardScaler()),",safe,Supervised-model scaling is inside sklearn Pipeline or no PCA is used in Stage 3/4.,no
+src/stage3_baseline_models.py,162,StandardScaler(,"(""scaler"", StandardScaler()),",safe,Supervised-model scaling is inside sklearn Pipeline or no PCA is used in Stage 3/4.,no
+src/stage3_baseline_models.py,214,GroupKFold,StratifiedGroupKFold(,safe,Grouped splitters protect subject-level train/test separation.,no
+src/stage3_baseline_models.py,214,StratifiedGroupKFold,StratifiedGroupKFold(,safe,Grouped splitters protect subject-level train/test separation.,no
+src/stage3_baseline_models.py,217,GroupKFold,"""StratifiedGroupKFold"",",safe,Grouped splitters protect subject-level train/test separation.,no
+src/stage3_baseline_models.py,217,StratifiedGroupKFold,"""StratifiedGroupKFold"",",safe,Grouped splitters protect subject-level train/test separation.,no
+src/stage3_baseline_models.py,221,GroupKFold,"GroupKFold(n_splits=N_SPLITS),",safe,Grouped splitters protect subject-level train/test separation.,no
+src/stage3_baseline_models.py,222,GroupKFold,"""GroupKFold"",",safe,Grouped splitters protect subject-level train/test separation.,no
+src/stage3_baseline_models.py,236,id,"df: pd.DataFrame, id_col: str, label_col: str",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,238,.groupby(,"labels = df.groupby(id_col, dropna=False)[label_col].first()",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
+src/stage3_baseline_models.py,238,id,"labels = df.groupby(id_col, dropna=False)[label_col].first()",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,246,id,"train_idx: np.ndarray,",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,247,id,"test_idx: np.ndarray,",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,252,id,train_df = df.iloc[train_idx],safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,253,id,test_df = df.iloc[test_idx],safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,254,id,train_subjects = set(train_df[config.id_col]),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,255,id,test_subjects = set(test_df[config.id_col]),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,272,class,"""train_record_class_distribution"": distribution(train_df[config.label_col]),",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage3_baseline_models.py,273,class,"""test_record_class_distribution"": distribution(test_df[config.label_col]),",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage3_baseline_models.py,274,class,"""train_subject_class_distribution"": subject_label_distribution(",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage3_baseline_models.py,275,id,"train_df, config.id_col, config.label_col",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,277,class,"""test_subject_class_distribution"": subject_label_distribution(",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage3_baseline_models.py,278,id,"test_df, config.id_col, config.label_col",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,287,class,classes = list(model.classes_),warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage3_baseline_models.py,288,class,if POS_LABEL not in classes:,warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage3_baseline_models.py,289,class,"raise ValueError(f""Positive label {POS_LABEL} not found in model classes"")",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage3_baseline_models.py,290,class,"return model.predict_proba(x_test)[:, classes.index(POS_LABEL)]",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage3_baseline_models.py,335,id,"""subject_id"": df_test[config.id_col].to_numpy(),",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,341,.groupby(,"pred_df.groupby(""subject_id"", dropna=False)",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
+src/stage3_baseline_models.py,341,id,"pred_df.groupby(""subject_id"", dropna=False)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,345,.groupby(,"label_counts = pred_df.groupby(""subject_id"", dropna=False)[""y_true""].nunique(",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
+src/stage3_baseline_models.py,345,id,"label_counts = pred_df.groupby(""subject_id"", dropna=False)[""y_true""].nunique(",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,402,.groupby(,"for values, group in fold_rows.groupby(group_cols, dropna=False):",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
+src/stage3_baseline_models.py,425,.groupby(,"for values, group in fold_rows.groupby(group_cols, dropna=False):",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
+src/stage3_baseline_models.py,478,id,groups = df[config.id_col],safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,484,.groupby(,df.groupby(config.id_col).size().value_counts().sort_index().to_dict(),safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
+src/stage3_baseline_models.py,484,id,df.groupby(config.id_col).size().value_counts().sort_index().to_dict(),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,500,id,"f""- Subjects: `{df[config.id_col].nunique()}`"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,503,class,"f""- Record-level class distribution: `{distribution(df[config.label_col])}`"",",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage3_baseline_models.py,504,class,"f""- Subject-level class distribution: """,warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage3_baseline_models.py,505,id,"f""`{subject_label_distribution(df, config.id_col, config.label_col)}`"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,522,sex_male,"""- Dataset 2 prepared file only contains metadata cleanup and sex_male """,safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,524,id,"""cross-validation. Scaling for Logistic Regression and SVM-RBF is """,safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,531,GroupKFold,"f""- StratifiedGroupKFold unavailable; fallback reason: `{fallback_reason}`"",",safe,Grouped splitters protect subject-level train/test separation.,no
+src/stage3_baseline_models.py,531,StratifiedGroupKFold,"f""- StratifiedGroupKFold unavailable; fallback reason: `{fallback_reason}`"",",safe,Grouped splitters protect subject-level train/test separation.,no
+src/stage3_baseline_models.py,536,id,"for fold, (train_idx, test_idx) in enumerate(splits, start=1):",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,541,id,"train_idx,",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,542,id,"test_idx,",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,547,id,train_df = df.iloc[train_idx],safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,548,id,test_df = df.iloc[test_idx],safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,550,id,"f""- Fold {fold}: train subjects `{train_df[config.id_col].nunique()}`, """,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,551,id,"f""test subjects `{test_df[config.id_col].nunique()}`, """,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,553,class,"f""test subject classes """,warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage3_baseline_models.py,554,id,"f""`{subject_label_distribution(test_df, config.id_col, config.label_col)}`""",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,576,id,"test_df[config.id_col].nunique(),",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,665,train_test_split,"""- No row-wise random `train_test_split` was used."",",safe,Only appears in report guardrail text stating it was not used.,no
+src/stage3_baseline_models.py,666,ID,"""- All train/test splits are grouped by subject ID."",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage3_baseline_models.py,667,id,"""- Standardization is only applied inside sklearn `Pipeline` objects."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,668,SMOTE,"""- No SMOTE, PCA, feature selection, SHAP, clustering, or large grid search was used."",",warning,SMOTE appears; verify it is not used outside grouped CV.,no
+src/stage3_baseline_models.py,668,id,"""- No SMOTE, PCA, feature selection, SHAP, clustering, or large grid search was used."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,668,cluster,"""- No SMOTE, PCA, feature selection, SHAP, clustering, or large grid search was used."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,670,sex_male,"""- `sex_male` is excluded from the main `acoustic_only` models."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage3_baseline_models.py,690,class,"""Positive class: `1 = PD`; negative class: `0 = Healthy`."",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
 src/stage4_biomarker_identification.py,16,LogisticRegressionCV,from sklearn.linear_model import LogisticRegressionCV,safe,Stage 4 L1 stability selection uses LogisticRegressionCV inside a fold-level Pipeline.,no
-src/stage4_biomarker_identification.py,39,id,"METADATA_COLUMNS = {""id"", ""gender"", ""class"", ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,39,sex_male,"METADATA_COLUMNS = {""id"", ""gender"", ""class"", ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,39,gender,"METADATA_COLUMNS = {""id"", ""gender"", ""class"", ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,39,class,"METADATA_COLUMNS = {""id"", ""gender"", ""class"", ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,54,id,"required = {""id"", ""gender"", ""class"", ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,54,sex_male,"required = {""id"", ""gender"", ""class"", ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,54,gender,"required = {""id"", ""gender"", ""class"", ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,54,class,"required = {""id"", ""gender"", ""class"", ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,60,.groupby(,"if int(df.groupby(""id"")[""class""].nunique(dropna=False).max()) != 1:",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
-src/stage4_biomarker_identification.py,60,id,"if int(df.groupby(""id"")[""class""].nunique(dropna=False).max()) != 1:",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,60,class,"if int(df.groupby(""id"")[""class""].nunique(dropna=False).max()) != 1:",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,61,class,"raise ValueError(""Dataset 1 has subjects with inconsistent class labels"")",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage4_biomarker_identification.py,62,.groupby(,"if int(df.groupby(""id"")[""sex_male""].nunique(dropna=False).max()) != 1:",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
-src/stage4_biomarker_identification.py,62,id,"if int(df.groupby(""id"")[""sex_male""].nunique(dropna=False).max()) != 1:",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,62,sex_male,"if int(df.groupby(""id"")[""sex_male""].nunique(dropna=False).max()) != 1:",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,63,sex_male,"raise ValueError(""Dataset 1 has subjects with inconsistent sex_male values"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,75,id,forbidden = METADATA_COLUMNS & set(columns),safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,76,id,if forbidden:,safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,77,id,"raise ValueError(f""Forbidden metadata columns in acoustic features: {forbidden}"")",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,82,.groupby(,"feature_means = df.groupby(""id"", dropna=False)[features].mean().reset_index()",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
-src/stage4_biomarker_identification.py,82,id,"feature_means = df.groupby(""id"", dropna=False)[features].mean().reset_index()",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,84,.groupby(,"df.groupby(""id"", dropna=False)",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
-src/stage4_biomarker_identification.py,84,id,"df.groupby(""id"", dropna=False)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,86,class,"class_label=(""class"", ""first""),",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage4_biomarker_identification.py,87,sex_male,"sex_male=(""sex_male"", ""first""),",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,88,id,"record_count=(""id"", ""size""),",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,91,class,".rename(columns={""class_label"": ""class""})",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage4_biomarker_identification.py,93,id,"subject_table = subject_meta.merge(feature_means, on=""id"", how=""left"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,105,class,"""class_distribution"": {",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,107,class,"for k, v in subject_table[""class""].value_counts().sort_index().items()",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,169,id,valid = np.isfinite(p),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,170,id,if not valid.any():,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,172,id,valid_p = p[valid],safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,173,id,order = np.argsort(valid_p),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,174,id,ordered_p = valid_p[order],safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,181,id,adjusted[valid] = q,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,210,class,"y = subject_table[""class""].astype(int).to_numpy()",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage4_biomarker_identification.py,218,id,"pd_values, healthy_values, alternative=""two-sided""",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,260,class,"y = subject_table[""class""].astype(int).to_numpy()",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage4_biomarker_identification.py,264,id,"for fold, (train_idx, _) in enumerate(stratified_folds(y).split(x, y), start=1):",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,267,StandardScaler(,"(""scaler"", StandardScaler()),",safe,Supervised-model scaling is inside sklearn Pipeline or no PCA is used in Stage 3/4.,no
-src/stage4_biomarker_identification.py,270,LogisticRegressionCV,LogisticRegressionCV(,safe,Stage 4 L1 stability selection uses LogisticRegressionCV inside a fold-level Pipeline.,no
-src/stage4_biomarker_identification.py,283,id,"pipeline.fit(x.iloc[train_idx], y[train_idx])",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,308,class,"y = subject_table[""class""].astype(int).to_numpy()",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
-src/stage4_biomarker_identification.py,313,id,"for fold, (train_idx, test_idx) in enumerate(stratified_folds(y).split(x, y), start=1):",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,319,id,"model.fit(x[train_idx], y[train_idx])",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,322,permutation_importance,"permutation_mean, permutation_std = heldout_permutation_importance(",safe,Project implements held-out permutation importance rather than fitting on all data.,no
-src/stage4_biomarker_identification.py,324,id,"x[test_idx],",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,325,id,"y[test_idx],",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,348,permutation_importance,"""permutation_importance_mean"": permutation_array.mean(axis=0),",safe,Project implements held-out permutation importance rather than fitting on all data.,no
-src/stage4_biomarker_identification.py,349,permutation_importance,"""permutation_importance_std_across_folds"": permutation_array.std(",safe,Project implements held-out permutation importance rather than fitting on all data.,no
-src/stage4_biomarker_identification.py,354,permutation_importance,").sort_values(""permutation_importance_mean"", ascending=False)",safe,Project implements held-out permutation importance rather than fitting on all data.,no
-src/stage4_biomarker_identification.py,358,permutation_importance,def heldout_permutation_importance(,safe,Project implements held-out permutation importance rather than fitting on all data.,no
-src/stage4_biomarker_identification.py,399,id,"return ""Formant / Bandwidth""",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,464,permutation_importance,"""permutation_importance_mean"",",safe,Project implements held-out permutation importance rather than fitting on all data.,no
-src/stage4_biomarker_identification.py,465,permutation_importance,"""permutation_importance_std_across_folds"",",safe,Project implements held-out permutation importance rather than fitting on all data.,no
-src/stage4_biomarker_identification.py,466,permutation_importance,"""permutation_importance_positive"",",safe,Project implements held-out permutation importance rather than fitting on all data.,no
-src/stage4_biomarker_identification.py,477,permutation_importance,"summary[""rank_permutation_importance""] = rank_desc(",safe,Project implements held-out permutation importance rather than fitting on all data.,no
-src/stage4_biomarker_identification.py,478,permutation_importance,"summary[""permutation_importance_mean""]",safe,Project implements held-out permutation importance rather than fitting on all data.,no
-src/stage4_biomarker_identification.py,486,permutation_importance,"""rank_permutation_importance"",",safe,Project implements held-out permutation importance rather than fitting on all data.,no
-src/stage4_biomarker_identification.py,512,id,"ax.set_title(""Stage 4 Top 20 Biomarker Candidates"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,528,id,"ax.axvline(0, color=""#333333"", linewidth=0.8)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,569,id,"ax.axvline(0, color=""#333333"", linewidth=0.8)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,598,permutation_importance,"""permutation_importance_mean"",",safe,Project implements held-out permutation importance rather than fitting on all data.,no
-src/stage4_biomarker_identification.py,610,permutation_importance,"(summary[""permutation_importance_mean""] > 0).sum()",safe,Project implements held-out permutation importance rather than fitting on all data.,no
-src/stage4_biomarker_identification.py,613,id,"""# Stage 4 Biomarker Candidate Report"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,623,class,"f""- Class distribution: `{audit['class_distribution']}`"",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,630,id,"""- Main features exclude `id`, `gender`, `class`, and `sex_male`."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,630,sex_male,"""- Main features exclude `id`, `gender`, `class`, and `sex_male`."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,630,gender,"""- Main features exclude `id`, `gender`, `class`, and `sex_male`."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,630,class,"""- Main features exclude `id`, `gender`, `class`, and `sex_male`."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,636,id,"""- L1 stability selection used subject-level StratifiedKFold; scaling and L1 Logistic were fit only inside training folds."",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,639,id,"""- These features are exploratory biomarker candidates for modeling interpretation and require independent validation."",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,640,id,"""- Some near-constant features were selected by L1, so L1 stability is treated as one evidence source rather than a standalone final conclusion."",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,642,id,"""- The final Top 20 are candidate voice biomarker features, not clinical causal mechanisms."",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,644,id,"""## Top 10 biomarker candidates"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,648,id,"""## Top 20 biomarker candidates"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,652,id,"""## Top 50 biomarker candidates"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
-src/stage4_biomarker_identification.py,663,permutation_importance,"""- `results/stage4_permutation_importance_dataset1.csv`"",",safe,Project implements held-out permutation importance rather than fitting on all data.,no
-src/stage4_biomarker_identification.py,677,id,"""- Final ranking combines univariate, stability, permutation, and tree-based evidence rather than relying only on tree importance."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
-src/stage4_biomarker_identification.py,732,permutation_importance,"permutation[""permutation_importance_positive""] = (",safe,Project implements held-out permutation importance rather than fitting on all data.,no
-src/stage4_biomarker_identification.py,733,permutation_importance,"permutation[""permutation_importance_mean""] > 0",safe,Project implements held-out permutation importance rather than fitting on all data.,no
-src/stage4_biomarker_identification.py,762,permutation_importance,"RESULTS_DIR / ""stage4_permutation_importance_dataset1.csv"",",safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,52,id,"METADATA_COLUMNS = {""id"", ""gender"", ""class"", ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,52,sex_male,"METADATA_COLUMNS = {""id"", ""gender"", ""class"", ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,52,gender,"METADATA_COLUMNS = {""id"", ""gender"", ""class"", ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,52,class,"METADATA_COLUMNS = {""id"", ""gender"", ""class"", ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,67,id,"required = {""id"", ""gender"", ""class"", ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,67,sex_male,"required = {""id"", ""gender"", ""class"", ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,67,gender,"required = {""id"", ""gender"", ""class"", ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,67,class,"required = {""id"", ""gender"", ""class"", ""sex_male""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,73,.groupby(,"if int(df.groupby(""id"")[""class""].nunique(dropna=False).max()) != 1:",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
+src/stage4_biomarker_identification.py,73,id,"if int(df.groupby(""id"")[""class""].nunique(dropna=False).max()) != 1:",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,73,class,"if int(df.groupby(""id"")[""class""].nunique(dropna=False).max()) != 1:",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,74,class,"raise ValueError(""Dataset 1 has subjects with inconsistent class labels"")",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage4_biomarker_identification.py,75,.groupby(,"if int(df.groupby(""id"")[""sex_male""].nunique(dropna=False).max()) != 1:",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
+src/stage4_biomarker_identification.py,75,id,"if int(df.groupby(""id"")[""sex_male""].nunique(dropna=False).max()) != 1:",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,75,sex_male,"if int(df.groupby(""id"")[""sex_male""].nunique(dropna=False).max()) != 1:",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,76,sex_male,"raise ValueError(""Dataset 1 has subjects with inconsistent sex_male values"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,88,id,forbidden = METADATA_COLUMNS & set(columns),safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,89,id,if forbidden:,safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,90,id,"raise ValueError(f""Forbidden metadata columns in acoustic features: {forbidden}"")",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,95,.groupby(,"feature_means = df.groupby(""id"", dropna=False)[features].mean().reset_index()",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
+src/stage4_biomarker_identification.py,95,id,"feature_means = df.groupby(""id"", dropna=False)[features].mean().reset_index()",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,97,.groupby(,"df.groupby(""id"", dropna=False)",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
+src/stage4_biomarker_identification.py,97,id,"df.groupby(""id"", dropna=False)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,99,class,"class_label=(""class"", ""first""),",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage4_biomarker_identification.py,100,sex_male,"sex_male=(""sex_male"", ""first""),",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,101,id,"record_count=(""id"", ""size""),",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,104,class,".rename(columns={""class_label"": ""class""})",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage4_biomarker_identification.py,106,id,"subject_table = subject_meta.merge(feature_means, on=""id"", how=""left"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,118,class,"""class_distribution"": {",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,120,class,"for k, v in subject_table[""class""].value_counts().sort_index().items()",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,182,id,valid = np.isfinite(p),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,183,id,if not valid.any():,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,185,id,valid_p = p[valid],safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,186,id,order = np.argsort(valid_p),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,187,id,ordered_p = valid_p[order],safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,194,id,adjusted[valid] = q,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,223,class,"y = subject_table[""class""].astype(int).to_numpy()",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage4_biomarker_identification.py,231,id,"pd_values, healthy_values, alternative=""two-sided""",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,273,class,"y = subject_table[""class""].astype(int).to_numpy()",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage4_biomarker_identification.py,277,id,"for fold, (train_idx, _) in enumerate(stratified_folds(y).split(x, y), start=1):",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,280,StandardScaler(,"(""scaler"", StandardScaler()),",safe,Supervised-model scaling is inside sklearn Pipeline or no PCA is used in Stage 3/4.,no
+src/stage4_biomarker_identification.py,283,LogisticRegressionCV,LogisticRegressionCV(,safe,Stage 4 L1 stability selection uses LogisticRegressionCV inside a fold-level Pipeline.,no
+src/stage4_biomarker_identification.py,296,id,"pipeline.fit(x.iloc[train_idx], y[train_idx])",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,321,class,"y = subject_table[""class""].astype(int).to_numpy()",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage4_biomarker_identification.py,326,id,"for fold, (train_idx, test_idx) in enumerate(stratified_folds(y).split(x, y), start=1):",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,332,id,"model.fit(x[train_idx], y[train_idx])",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,335,permutation_importance,"permutation_mean, permutation_std = heldout_permutation_importance(",safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,337,id,"x[test_idx],",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,338,id,"y[test_idx],",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,361,permutation_importance,"""permutation_importance_mean"": permutation_array.mean(axis=0),",safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,362,permutation_importance,"""permutation_importance_std_across_folds"": permutation_array.std(",safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,367,permutation_importance,").sort_values(""permutation_importance_mean"", ascending=False)",safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,371,permutation_importance,def heldout_permutation_importance(,safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,407,class,"def positive_class_shap_values(values: Any, n_features: int) -> np.ndarray:",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,448,class,"y = subject_table[""class""].astype(int).to_numpy()",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage4_biomarker_identification.py,452,id,"for fold, (train_idx, test_idx) in enumerate(stratified_folds(y).split(x, y), start=1):",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,454,id,"model.fit(x.iloc[train_idx], y[train_idx])",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,458,class,shap_values = positive_class_shap_values(,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,459,id,"explainer.shap_values(x.iloc[test_idx]),",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,512,id,"return ""Formant / Bandwidth""",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,579,permutation_importance,"""permutation_importance_mean"",",safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,580,permutation_importance,"""permutation_importance_std_across_folds"",",safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,581,permutation_importance,"""permutation_importance_positive"",",safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,618,permutation_importance,"summary[""rank_permutation_importance""] = rank_desc(",safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,619,permutation_importance,"summary[""permutation_importance_mean""]",safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,627,permutation_importance,"""rank_permutation_importance"",",safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,653,id,"ax.set_title(""Stage 4 Top 20 Biomarker Candidates"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,669,id,"ax.axvline(0, color=""#333333"", linewidth=0.8)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,710,id,"ax.axvline(0, color=""#333333"", linewidth=0.8)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,755,permutation_importance,"""permutation_importance_mean"",",safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,769,permutation_importance,"(summary[""permutation_importance_mean""] > 0).sum()",safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,772,id,"""# Stage 4 Biomarker Candidate Report"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,782,class,"f""- Class distribution: `{audit['class_distribution']}`"",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,789,id,"""- Main features exclude `id`, `gender`, `class`, and `sex_male`."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,789,sex_male,"""- Main features exclude `id`, `gender`, `class`, and `sex_male`."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,789,gender,"""- Main features exclude `id`, `gender`, `class`, and `sex_male`."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,789,class,"""- Main features exclude `id`, `gender`, `class`, and `sex_male`."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,795,id,"""- L1 stability selection used subject-level StratifiedKFold; scaling and L1 Logistic were fit only inside training folds."",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,797,id,"""- XGBoost and SHAP are supplemental evidence only; they are not included in the mean-rank formula and do not change Top 10/20/50 membership."",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,798,id,"""- These features are exploratory biomarker candidates for modeling interpretation and require independent validation."",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,799,id,"""- Some near-constant features were selected by L1, so L1 stability is treated as one evidence source rather than a standalone final conclusion."",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,801,id,"""- The final Top 20 are candidate voice biomarker features, not clinical causal mechanisms."",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,803,id,"""## Top 10 biomarker candidates"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,807,id,"""## Top 20 biomarker candidates"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,811,id,"""## Top 50 biomarker candidates"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,815,id,"""## Supplemental XGBoost/SHAP evidence"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage4_biomarker_identification.py,829,permutation_importance,"""- `results/stage4_permutation_importance_dataset1.csv`"",",safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,846,id,"""- Final ranking combines univariate, stability, permutation, and tree-based evidence rather than relying only on tree importance."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,847,id,"""- Supplemental XGBoost/SHAP evidence is not used by Stage 5 or Stage 6."",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage4_biomarker_identification.py,905,permutation_importance,"permutation[""permutation_importance_positive""] = (",safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,906,permutation_importance,"permutation[""permutation_importance_mean""] > 0",safe,Project implements held-out permutation importance rather than fitting on all data.,no
+src/stage4_biomarker_identification.py,937,permutation_importance,"RESULTS_DIR / ""stage4_permutation_importance_dataset1.csv"",",safe,Project implements held-out permutation importance rather than fitting on all data.,no
 src/stage5_pd_two_cluster_phenotyping.py,14,cluster,"from sklearn.cluster import AgglomerativeClustering, KMeans",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
 src/stage5_pd_two_cluster_phenotyping.py,53,id,"""id"",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
 src/stage5_pd_two_cluster_phenotyping.py,54,gender,"""gender"",",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
@@ -505,6 +514,149 @@ src/stage5_pd_two_cluster_phenotyping.py,1011,cluster,plot_pca_clusters(,warning
 src/stage5_pd_two_cluster_phenotyping.py,1015,cluster,"FIGURES_DIR / ""stage5_pca_k2_clusters_top50.png"",",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
 src/stage5_pd_two_cluster_phenotyping.py,1018,cluster,plot_cluster_sizes(metrics),warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
 src/stage5_pd_two_cluster_phenotyping.py,1027,class,"classifier_metrics,",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,3,class,from dataclasses import dataclass,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,14,cluster,"from sklearn.cluster import AgglomerativeClustering, KMeans",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,33,cluster,"STAGE5_METRICS_PATH = RESULTS_DIR / ""stage5_clustering_metrics.csv""",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,33,stage5_cluster,"STAGE5_METRICS_PATH = RESULTS_DIR / ""stage5_clustering_metrics.csv""",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,34,cluster,"STAGE6_METRICS_PATH = RESULTS_DIR / ""stage6_six_cluster_metrics.csv""",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,35,cluster,"STAGE5_ASSIGNMENTS_PATH = RESULTS_DIR / ""stage5_cluster_assignments_dataset1_pd.csv""",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,35,stage5_cluster,"STAGE5_ASSIGNMENTS_PATH = RESULTS_DIR / ""stage5_cluster_assignments_dataset1_pd.csv""",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,36,cluster,"STAGE6_ASSIGNMENTS_PATH = RESULTS_DIR / ""stage6_six_cluster_assignments_dataset1_pd.csv""",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,48,id,"METADATA_COLUMNS = {""id"", ""gender"", ""class"", ""sex_male"", ""record_count""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,48,sex_male,"METADATA_COLUMNS = {""id"", ""gender"", ""class"", ""sex_male"", ""record_count""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,48,gender,"METADATA_COLUMNS = {""id"", ""gender"", ""class"", ""sex_male"", ""record_count""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,48,class,"METADATA_COLUMNS = {""id"", ""gender"", ""class"", ""sex_male"", ""record_count""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,49,cluster,"LABEL_COLUMN_TOKENS = (""cluster"", ""label"", ""prediction"", ""phenotype"")",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,60,class,@dataclass(frozen=True),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,61,class,class FeatureScheme:,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,91,id,def is_forbidden_feature_column(column: str) -> bool:,safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,100,id,if not is_forbidden_feature_column(column),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,107,id,forbidden = sorted(column for column in columns if is_forbidden_feature_column(column)),safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,108,id,if forbidden:,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,109,id,"raise ValueError(f""Forbidden columns entered acoustic feature list: {forbidden}"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,119,id,"required_columns = {""id"", ""class"", ""sex_male"", ""record_count""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,119,sex_male,"required_columns = {""id"", ""class"", ""sex_male"", ""record_count""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,119,class,"required_columns = {""id"", ""class"", ""sex_male"", ""record_count""}",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,125,id,"if int(subject_table[""id""].duplicated().sum()):",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,136,class,"pd_subjects = subject_table.loc[subject_table[""class""] == PD_LABEL].copy()",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,139,class,"if set(pd_subjects[""class""].unique()) != {PD_LABEL}:",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,193,id,"for component_id, component in enumerate(components, start=1):",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,207,id,"""component_id"": component_id,",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,364,class,"""selection_population"": ""Dataset 1 PD only (class == 1)"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,372,id,"""forbidden_columns_excluded"": "";"".join(",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,373,id,"[""id"", ""gender"", ""class"", ""sex_male"", ""record_count"", ""Stage 5 cluster"", ""Stage 6 cluster""]",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,373,sex_male,"[""id"", ""gender"", ""class"", ""sex_male"", ""record_count"", ""Stage 5 cluster"", ""Stage 6 cluster""]",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,373,gender,"[""id"", ""gender"", ""class"", ""sex_male"", ""record_count"", ""Stage 5 cluster"", ""Stage 6 cluster""]",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,373,class,"[""id"", ""gender"", ""class"", ""sex_male"", ""record_count"", ""Stage 5 cluster"", ""Stage 6 cluster""]",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,373,cluster,"[""id"", ""gender"", ""class"", ""sex_male"", ""record_count"", ""Stage 5 cluster"", ""Stage 6 cluster""]",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,395,fit_transform,scaled = StandardScaler().fit_transform(data[scheme.source_features].to_numpy(dtype=float)),warning,Preprocessing fit pattern needs context review.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,395,StandardScaler(,scaled = StandardScaler().fit_transform(data[scheme.source_features].to_numpy(dtype=float)),warning,Preprocessing fit pattern needs context review.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,398,PCA(,model = SparsePCA(,warning,Preprocessing fit pattern needs context review.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,401,id,"ridge_alpha=0.01,",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,407,fit_transform,projected = model.fit_transform(scaled),warning,Preprocessing fit pattern needs context review.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,412,PCA(,"pca = PCA(n_components=0.90, random_state=RANDOM_STATE)",warning,Preprocessing fit pattern needs context review.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,414,PCA(,"pca = PCA(n_components=int(representation.split(""_"", maxsplit=1)[1]), random_state=RANDOM_STATE)",warning,Preprocessing fit pattern needs context review.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,417,fit_transform,projected = pca.fit_transform(scaled),warning,Preprocessing fit pattern needs context review.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,421,cluster,"def cluster_labels(matrix: np.ndarray, method: str, k: int, random_state: int = RANDOM_STATE) -> np.ndarray:",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,423,cluster,"return KMeans(n_clusters=k, n_init=50, random_state=random_state).fit_predict(matrix)",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,432,cluster,"return AgglomerativeClustering(n_clusters=k, linkage=""ward"").fit_predict(matrix)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,433,cluster,"raise ValueError(f""Unknown clustering method: {method}"")",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,436,cluster,"def cluster_size_stats(labels: np.ndarray, k: int) -> dict[str, Any]:",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,444,cluster,"""cluster_sizes"": "";"".join(f""{cluster}:{int(size)}"" for cluster, size in counts.items()),",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,445,cluster,"""min_cluster_size"": min_size,",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,446,cluster,"""max_cluster_size"": max_size,",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,447,cluster,"""min_cluster_ratio"": min_ratio,",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,448,cluster,"""max_cluster_ratio"": max_ratio,",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,450,cluster,"""smaller_cluster_ratio"": smaller_ratio,",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,454,cluster,"def clustering_quality(matrix: np.ndarray, labels: np.ndarray) -> tuple[float, float, float, str]:",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,456,cluster,"return np.nan, np.nan, np.nan, ""single cluster produced""",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,488,cluster,"sample_labels = cluster_labels(sample_matrix, method, k, RANDOM_STATE + run_index + 1)",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,493,cluster,def run_clustering_stage(,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,504,cluster,"labels = cluster_labels(matrix, method, k)",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,505,cluster,"size_stats = cluster_size_stats(labels, k)",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,506,cluster,"silhouette, calinski, davies, metric_warning = clustering_quality(matrix, labels)",warning,Label appears as a target or derived assignment; verify it is not part of feature matrices.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,513,cluster,"if stage == ""stage5b"" and size_stats[""smaller_cluster_ratio""] < 0.10:",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,514,cluster,"warnings.append(""smaller_cluster_ratio < 0.10; not eligible for recommendation"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,516,cluster,"if size_stats[""min_cluster_size""] < 8:",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,517,cluster,"warnings.append(""min_cluster_size < 8; not eligible for recommendation"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,518,cluster,"if size_stats[""min_cluster_ratio""] < 0.05:",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,519,cluster,"warnings.append(""min_cluster_ratio < 0.05; not eligible for recommendation"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,527,id,"""candidate_id"": f""{scheme.name}|{representation}|{method}|k{k}"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,547,id,"valid = series.astype(float).replace([np.inf, -np.inf], np.nan)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,548,id,min_value = valid.min(skipna=True),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,549,id,max_value = valid.max(skipna=True),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,552,id,scaled = (valid - min_value) / (max_value - min_value),safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,561,cluster,"eligible = out[""smaller_cluster_ratio""] >= 0.10",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,563,cluster,"eligible = (out[""min_cluster_size""] >= 8) & (out[""min_cluster_ratio""] >= 0.05)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,573,id,"raise ValueError(f""No eligible candidates for {stage}"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,581,id,ideal_min_ratio = 1 / k,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,583,id,"eligible_metrics[""min_cluster_ratio""].astype(float) / ideal_min_ratio",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,583,cluster,"eligible_metrics[""min_cluster_ratio""].astype(float) / ideal_min_ratio",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,594,id,"raise ValueError(f""No eligible candidates available for {stage} sensitivity analysis"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,615,id,"""top1_candidate_id"": winner[""candidate_id""],",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,627,id,"""candidate_id"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,634,cluster,"""cluster_sizes"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,635,cluster,"""min_cluster_size"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,636,cluster,"""min_cluster_ratio"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,637,cluster,"""smaller_cluster_ratio"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,666,id,"def find_original_candidate(stage: str, rank_frequency: pd.DataFrame) -> pd.DataFrame:",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,669,cluster,"old_method_col = ""clustering_method"" if ""clustering_method"" in old.columns else ""method""",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,678,id,"candidate_id = f""{feature_set}|{representation}|{method}|k{k}""",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,679,id,"return rank_frequency.loc[rank_frequency[""candidate_id""] == candidate_id].copy()",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,716,id,"plot_data[""candidate""] = (",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,721,id,width = 0.38,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,722,id,"ax.bar(x - width / 2, plot_data[""top1_frequency""], width, label=""Top-1 frequency"", color=""#4c78a8"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,723,id,"ax.bar(x + width / 2, plot_data[""top3_frequency""], width, label=""Top-3 frequency"", color=""#f58518"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,724,id,"ax.axhline(0.60, color=""#b22222"", linestyle=""--"", linewidth=1, label=""Robust threshold"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,725,id,"ax.axhline(0.30, color=""#777777"", linestyle="":"", linewidth=1, label=""Relative threshold"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,726,id,"ax.set_title(f""{stage.upper()} Weight Sensitivity Top Candidates"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,729,id,"ax.set_xticklabels(plot_data[""candidate""], rotation=70, ha=""right"", fontsize=8)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,739,.groupby(,"plot_data.groupby(""feature_set"", as_index=False)",safe,"Pattern is used for configuration, reporting, grouping, or explicit exclusion.",no
+src/stage5b_stage6b_pdonly_sensitivity.py,774,id,"original = find_original_candidate(stage_key, rank)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,779,id,"""candidate_type"": ""Original Stage main scheme"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,787,id,"""candidate_type"": ""Best PD-only no-bonus scheme"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,794,id,"labels = plot_data[""stage""] + ""\n"" + plot_data[""candidate_type""]",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,795,id,"colors = [""#4c78a8"" if ""Original"" in value else ""#f58518"" for value in plot_data[""candidate_type""]]",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,797,id,"ax.axhline(0.60, color=""#b22222"", linestyle=""--"", linewidth=1)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,798,id,"ax.axhline(0.30, color=""#777777"", linestyle="":"", linewidth=1)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,811,id,"original = find_original_candidate(stage, rank_frequency)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,875,cluster,"""cluster_sizes"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,876,cluster,"""smaller_cluster_ratio"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,887,cluster,"""cluster_sizes"": ""簇人数"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,888,cluster,"""smaller_cluster_ratio"": ""较小簇比例"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,904,cluster,"""cluster_sizes"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,905,cluster,"""min_cluster_size"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,906,cluster,"""min_cluster_ratio"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,917,cluster,"""cluster_sizes"": ""簇人数"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,918,cluster,"""min_cluster_size"": ""最小簇人数"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,919,cluster,"""min_cluster_ratio"": ""最小簇比例"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,944,cluster,"""smaller_cluster_ratio"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,955,cluster,"""smaller_cluster_ratio"": ""较小簇比例"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,970,cluster,"""min_cluster_size"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,971,cluster,"""min_cluster_ratio"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,982,cluster,"""min_cluster_size"": ""最小簇人数"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,983,cluster,"""min_cluster_ratio"": ""最小簇比例"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1010,id,"stage5_original = find_original_candidate(""stage5b"", stage5_rank)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1011,id,"stage6_original = find_original_candidate(""stage6b"", stage6_rank)",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1050,id,"""- 图：`stage5b_weight_sensitivity_top_candidates.png` 和 `stage6b_weight_sensitivity_top_candidates.png`。"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1067,id,"raise ValueError(f""{stage} expected 96 candidates, found {metrics.shape[0]}"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1072,id,"forbidden_text = "" "".join(stage5_metrics[""candidate_id""].tolist() + stage6_metrics[""candidate_id""].tolist()).lower()",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1073,sex_male,"for token in [""sex_male"", ""record_count"", ""stage5_cluster"", ""stage6_cluster""]:",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1073,cluster,"for token in [""sex_male"", ""record_count"", ""stage5_cluster"", ""stage6_cluster""]:",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1073,stage5_cluster,"for token in [""sex_male"", ""record_count"", ""stage5_cluster"", ""stage6_cluster""]:",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1073,stage6_cluster,"for token in [""sex_male"", ""record_count"", ""stage5_cluster"", ""stage6_cluster""]:",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1074,id,if token in forbidden_text:,safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1075,id,"raise ValueError(f""Forbidden token appeared in candidate ids: {token}"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1093,cluster,"run_clustering_stage(pd_subjects, schemes, 2, ""stage5b""), 2, ""stage5b""",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1096,cluster,"run_clustering_stage(pd_subjects, schemes, 6, ""stage6b""), 6, ""stage6b""",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1103,cluster,"write_csv(stage5_metrics, RESULTS_DIR / ""stage5b_clustering_metrics_no_bonus.csv"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1104,cluster,"write_csv(stage6_metrics, RESULTS_DIR / ""stage6b_clustering_metrics_no_bonus.csv"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1107,id,"write_csv(stage5_rank, RESULTS_DIR / ""stage5b_candidate_rank_frequency.csv"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1108,id,"write_csv(stage6_rank, RESULTS_DIR / ""stage6b_candidate_rank_frequency.csv"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1113,id,"FIGURES_DIR / ""stage5b_weight_sensitivity_top_candidates.png"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1118,id,"FIGURES_DIR / ""stage6b_weight_sensitivity_top_candidates.png"",",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1140,id,"print(f""Stage 5b top candidate: {stage5_rank.iloc[0]['candidate_id']} ({stage5_rank.iloc[0]['top1_frequency']:.1%})"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
+src/stage5b_stage6b_pdonly_sensitivity.py,1141,id,"print(f""Stage 6b top candidate: {stage6_rank.iloc[0]['candidate_id']} ({stage6_rank.iloc[0]['top1_frequency']:.1%})"")",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
 src/stage6_pd_six_cluster_phenotyping.py,14,cluster,"from sklearn.cluster import AgglomerativeClustering, KMeans",safe,Metadata/label token occurrence is not evidence of feature leakage by itself.,no
 src/stage6_pd_six_cluster_phenotyping.py,47,cluster,"STAGE5_ASSIGNMENTS_PATH = RESULTS_DIR / ""stage5_cluster_assignments_dataset1_pd.csv""",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no
 src/stage6_pd_six_cluster_phenotyping.py,47,stage5_cluster,"STAGE5_ASSIGNMENTS_PATH = RESULTS_DIR / ""stage5_cluster_assignments_dataset1_pd.csv""",safe,"Metadata/label column appears in validation, exclusion, audit, assignment, or post-hoc description.",no

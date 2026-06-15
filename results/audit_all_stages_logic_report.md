@@ -8,9 +8,9 @@ No core stage rerun is required based on this audit; address warnings as documen
 
 ## Check Summary
 
-- Total checks: `88`
-- Status counts: `{'pass': 87, 'warning': 1}`
-- Static code findings: `861` rows; warnings `205`, fails `0`
+- Total checks: `92`
+- Status counts: `{'pass': 91, 'warning': 1}`
+- Static code findings: `1013` rows; warnings `227`, fails `0`
 
 | stage | pass | warning |
 | --- | --- | --- |
@@ -18,9 +18,9 @@ No core stage rerun is required based on this audit; address warnings as documen
 | Stage 1 | 14 | 0 |
 | Stage 2 | 12 | 0 |
 | Stage 3 | 9 | 0 |
-| Stage 4 | 11 | 0 |
-| Stage 5 | 17 | 0 |
-| Stage 6 | 18 | 1 |
+| Stage 4 | 13 | 0 |
+| Stage 5 | 18 | 0 |
+| Stage 6 | 19 | 1 |
 | Static code audit | 1 | 0 |
 
 ## Redline Failures
@@ -39,24 +39,25 @@ Static pattern warnings are explainability items, not automatic redlines:
 | --- | --- | --- | --- | --- | --- |
 | src/stage2_qc_pipeline.py | 308 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
 | src/stage2_qc_pipeline.py | 310 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage3_baseline_models.py | 239 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage3_baseline_models.py | 240 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage3_baseline_models.py | 241 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage3_baseline_models.py | 244 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage3_baseline_models.py | 254 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage3_baseline_models.py | 255 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage3_baseline_models.py | 256 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage3_baseline_models.py | 257 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage3_baseline_models.py | 470 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage3_baseline_models.py | 471 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage3_baseline_models.py | 511 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage3_baseline_models.py | 626 | SMOTE | warning | SMOTE appears; verify it is not used outside grouped CV. | no |
-| src/stage4_biomarker_identification.py | 61 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage4_biomarker_identification.py | 86 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage4_biomarker_identification.py | 91 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage4_biomarker_identification.py | 210 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage4_biomarker_identification.py | 260 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage4_biomarker_identification.py | 308 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage3_baseline_models.py | 272 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage3_baseline_models.py | 273 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage3_baseline_models.py | 274 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage3_baseline_models.py | 277 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage3_baseline_models.py | 287 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage3_baseline_models.py | 288 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage3_baseline_models.py | 289 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage3_baseline_models.py | 290 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage3_baseline_models.py | 503 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage3_baseline_models.py | 504 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage3_baseline_models.py | 553 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage3_baseline_models.py | 668 | SMOTE | warning | SMOTE appears; verify it is not used outside grouped CV. | no |
+| src/stage4_biomarker_identification.py | 74 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage4_biomarker_identification.py | 99 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage4_biomarker_identification.py | 104 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage4_biomarker_identification.py | 223 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage4_biomarker_identification.py | 273 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage4_biomarker_identification.py | 321 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
+| src/stage4_biomarker_identification.py | 448 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
 | src/stage5_pd_two_cluster_phenotyping.py | 59 | cluster | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
 | src/stage5_pd_two_cluster_phenotyping.py | 147 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
 | src/stage5_pd_two_cluster_phenotyping.py | 236 | fit_transform | warning | Unsupervised PD-only clustering fits scaler/PCA on the PD subject subset; this is acceptable only because it is not supervised CV and forbidden columns are excluded. | no |
@@ -116,7 +117,6 @@ Static pattern warnings are explainability items, not automatic redlines:
 | src/stage5_pd_two_cluster_phenotyping.py | 841 | cluster | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
 | src/stage5_pd_two_cluster_phenotyping.py | 915 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
 | src/stage5_pd_two_cluster_phenotyping.py | 915 | cluster | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
-| src/stage5_pd_two_cluster_phenotyping.py | 917 | class | warning | Label appears as a target or derived assignment; verify it is not part of feature matrices. | no |
 
 ## Output Files
 

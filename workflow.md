@@ -96,6 +96,7 @@ Raw Dataset 1
 - `results/stage3_fold_split_audit.csv`
 - `results/stage3_confusion_matrices.csv`
 - `results/stage3_baseline_report.md`
+- Stage 3 metrics may include `XGBoost (supplemental)` rows; these are supplemental baseline results, not replacements for the primary model interpretation.
 
 红线：
 
@@ -136,6 +137,10 @@ Raw Dataset 1
 - `results/stage4_l1_stability_selection_dataset1.csv`
 - `results/stage4_tree_importance_dataset1.csv`
 - `results/stage4_permutation_importance_dataset1.csv`
+- `results/stage4_xgboost_importance_dataset1.csv`
+- `results/stage4_shap_importance_dataset1.csv`
+- `results/figures/stage4_shap_top20_mean_abs.png`
+- Stage 4 XGBoost/SHAP outputs are supplemental interpretability evidence only; they do not enter the `mean_rank` formula and must not change Top10/Top20/Top50 membership.
 
 红线：
 
@@ -234,6 +239,42 @@ Raw Dataset 1
 - 必须补充：Stage 6 的主方案选择综合考虑聚类质量、簇大小、稳定性、特征可解释性和与 Stage 5 二类潜在语音表型的一致性；其中 Stage 5 NMI 仅作为候选方案推荐指标之一，不作为六类聚类输入特征。
 - 避免写法：模型可诊断静止性震颤、运动迟缓、肌肉僵直、疼痛、痴呆、睡眠障碍六类真实临床症状。
 
+## 6b. Stage 5b/6b: PD-only feature-set and weight sensitivity
+
+Script:
+- `src/stage5b_stage6b_pdonly_sensitivity.py`
+
+Main responsibility:
+- Use the sealed Stage 4 subject-level table and retain only `class == 1` PD subjects.
+- Build PD-only candidate feature sets and compare them against Stage 4 Top20/Top50 controls.
+- Recompute Stage 5b k=2 and Stage 6b k=6 candidate metrics without interpretability bonus.
+- Run weight-sensitivity sampling for objective clustering-quality metrics.
+- Keep Stage 5b/6b as sensitivity analysis; it must not rewrite Stage 5/6 main assignments or clinical wording.
+
+Key outputs:
+- `results/stage5b_pd_only_feature_sets_audit.csv`
+- `results/stage6b_pd_only_feature_sets_audit.csv`
+- `results/stage5b_pd_only_retained_features.csv`
+- `results/stage6b_pd_only_retained_features.csv`
+- `results/stage5b_clustering_metrics_no_bonus.csv`
+- `results/stage6b_clustering_metrics_no_bonus.csv`
+- `results/stage5b_weight_sensitivity.csv`
+- `results/stage6b_weight_sensitivity.csv`
+- `results/stage5b_candidate_rank_frequency.csv`
+- `results/stage6b_candidate_rank_frequency.csv`
+- `results/stage5b_stage6b_feature_and_weight_sensitivity_report.md`
+- `results/stage5b_stage6b_paper_revision_suggestions.md`
+- `results/figures/stage5b_weight_sensitivity_top_candidates.png`
+- `results/figures/stage6b_weight_sensitivity_top_candidates.png`
+- `results/figures/stage5b_feature_set_metric_comparison.png`
+- `results/figures/stage6b_feature_set_metric_comparison.png`
+- `results/figures/stage5b_stage6b_original_vs_pdonly_comparison.png`
+
+Red lines:
+- Stage 5b/6b must remain PD-only and subject-level.
+- Stage 5b/6b must not use Healthy samples, record-level rows, sex variables, IDs, or cluster labels as clustering features.
+- Stage 5b/6b outputs are sensitivity evidence, not replacements for the sealed Stage 5/6 main reports unless the paper explicitly decides to revise the main scheme.
+
 ## 7. 独立逻辑审计
 
 脚本：
@@ -307,7 +348,17 @@ python src/stage3_baseline_models.py
 python src/stage4_biomarker_identification.py
 python src/stage5_pd_two_cluster_phenotyping.py
 python src/stage6_pd_six_cluster_phenotyping.py
+python src/stage5b_stage6b_pdonly_sensitivity.py
 python src/audit_all_stages_logic.py
 ```
+
+## 11. Supplemental analysis boundary
+
+- Stage 3 may include `XGBoost (supplemental)` as an additional PD/Healthy baseline model under the same grouped cross-validation protocol.
+- Stage 4 may include fold-wise XGBoost feature importance and held-out-fold SHAP mean absolute importance as supplemental interpretability evidence.
+- Stage 4 XGBoost/SHAP outputs do not enter the `mean_rank` formula and must not change the Top10/Top20/Top50 biomarker candidate membership.
+- Stage 5 and Stage 6 must not import, call, or consume XGBoost/SHAP outputs. They remain PD-only unsupervised latent voice phenotype analyses based on Stage 4 selected acoustic features.
+- Stage 5b/6b is sensitivity analysis for PD-only feature sets and objective weighting; it does not overwrite sealed Stage 5/6 main outputs by itself.
+- The required supplemental outputs are `results/stage4_xgboost_importance_dataset1.csv`, `results/stage4_shap_importance_dataset1.csv`, and `results/figures/stage4_shap_top20_mean_abs.png`.
 
 每次更新任一 Stage 脚本或关键输出后，都应重新运行 `src/audit_all_stages_logic.py`，并以 `results/audit_all_stages_logic_report.md` 的结论作为论文成稿前的逻辑边界检查。

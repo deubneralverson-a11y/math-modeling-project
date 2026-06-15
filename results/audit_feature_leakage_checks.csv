@@ -12,6 +12,7 @@ Stage 2,dataset2_class_sex_male_crosstab_subject.csv exists,file exists,results/
 Stage 3,acoustic_only excludes sex_male,metadata and sex_male excluded,exclusion expression found,pass,critical,src/stage3_baseline_models.py,
 Stage 4,Subject-level acoustic feature count,752,752,pass,critical,results/stage4_subject_level_feature_table_dataset1.csv,
 Stage 4,Top20/Top50 forbidden metadata features,[],[],pass,critical,results/stage4_top20_biomarkers_dataset1.csv; results/stage4_top50_biomarkers_dataset1.csv,
+Stage 4,XGBoost/SHAP forbidden metadata features,[],[],pass,critical,results/stage4_xgboost_importance_dataset1.csv; results/stage4_shap_importance_dataset1.csv,
 Stage 5,Uses Stage 4 subject-level feature table,Stage 4 subject table,found,pass,critical,src/stage5_pd_two_cluster_phenotyping.py,
 Stage 5,Input audit acoustic feature count,752,752,pass,critical,results/stage5_pd_subject_clustering_input_audit.csv,
 Stage 5,Top20 feature count,20,20,pass,high,results/stage5_pd_subject_clustering_input_audit.csv,
@@ -27,4 +28,4 @@ Stage 6,Cluster input excludes forbidden columns by code,metadata and label toke
 Stage 6,Report names classifier as cluster-label classifier,six-cluster-label classifier,found,pass,high,results/stage6_six_cluster_report.md,
 Stage 6,Report avoids treating clusters as true clinical labels,no unguarded clinical symptom labels,"['静止性震颤', '运动迟缓', '肌肉僵直', '疼痛', '痴呆', '睡眠障碍']",pass,critical,results/stage6_six_cluster_report.md,Clinical terms are acceptable only when explicitly negated or guarded.
 Cross-stage,All-acoustic feature count,752,752,pass,critical,results/stage4_subject_level_feature_table_dataset1.csv,
-Static code audit,High-risk pattern scan fail count,0,0,pass,critical,results/audit_static_code_risk_patterns.csv,warning_count=205; warnings require explanation but are not automatic redlines.
+Static code audit,High-risk pattern scan fail count,0,0,pass,critical,results/audit_static_code_risk_patterns.csv,warning_count=227; warnings require explanation but are not automatic redlines.

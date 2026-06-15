@@ -369,9 +369,13 @@ def audit_stage4(audit: Audit, tables: dict[str, pd.DataFrame]) -> None:
     subject_path = RESULTS_DIR / "stage4_subject_level_feature_table_dataset1.csv"
     top20_path = RESULTS_DIR / "stage4_top20_biomarkers_dataset1.csv"
     top50_path = RESULTS_DIR / "stage4_top50_biomarkers_dataset1.csv"
+    xgboost_path = RESULTS_DIR / "stage4_xgboost_importance_dataset1.csv"
+    shap_path = RESULTS_DIR / "stage4_shap_importance_dataset1.csv"
     subject = read_csv(subject_path)
     top20 = read_csv(top20_path)
     top50 = read_csv(top50_path)
+    xgboost_importance = read_csv(xgboost_path)
+    shap_importance = read_csv(shap_path)
     tables["stage4_subject"] = subject
     tables["stage4_top20"] = top20
     tables["stage4_top50"] = top50
@@ -386,6 +390,9 @@ def audit_stage4(audit: Audit, tables: dict[str, pd.DataFrame]) -> None:
     check_true(audit, "Stage 4", "Top50 row count", top50.shape[0] == 50, 50, top50.shape[0], "high", rel(top50_path))
     forbidden_top = sorted((set(top20["feature"]) | set(top50["feature"])) & FORBIDDEN_FEATURE_COLUMNS)
     check_equal(audit, "Stage 4", "Top20/Top50 forbidden metadata features", [], forbidden_top, "critical", f"{rel(top20_path)}; {rel(top50_path)}")
+    forbidden_xgb_shap = sorted((set(xgboost_importance["feature"]) | set(shap_importance["feature"])) & FORBIDDEN_FEATURE_COLUMNS)
+    check_equal(audit, "Stage 4", "XGBoost/SHAP forbidden metadata features", [], forbidden_xgb_shap, "critical", f"{rel(xgboost_path)}; {rel(shap_path)}")
+    check_true(audit, "Stage 4", "SHAP supplemental columns present", {"shap_mean_abs_mean", "rank_shap_mean_abs"}.issubset(shap_importance.columns), ["shap_mean_abs_mean", "rank_shap_mean_abs"], sorted(set(shap_importance.columns) & {"shap_mean_abs_mean", "rank_shap_mean_abs"}), "medium", rel(shap_path))
     check_true(audit, "Stage 4", "L1 scaling inside Pipeline", "Pipeline" in code and "LogisticRegressionCV" in code and "StandardScaler()" in code, "Pipeline(StandardScaler, LogisticRegressionCV)", "found", "critical", rel(code_path))
     check_true(audit, "Stage 4", "Permutation importance uses held-out fold function", "heldout_permutation_importance" in code and "x[test_idx]" in code, "held-out fold permutation", "found", "high", rel(code_path))
     check_true(audit, "Stage 4", "Report guards candidate biomarkers from causal interpretation", "not clinical causal mechanisms" in code or "require independent validation" in code, "guardrail wording present", "present" if "clinical causal" in code or "independent validation" in code else "not found", "medium", rel(code_path))
@@ -420,6 +427,8 @@ def audit_stage5(audit: Audit, tables: dict[str, pd.DataFrame]) -> None:
     check_true(audit, "Stage 5", "Candidate count covers feature sets and methods", metrics.shape[0] == 21 and set(metrics["clustering_method"]) == {"KMeans", "GaussianMixture", "AgglomerativeClustering"}, "21 candidates with 3 methods", f"rows={metrics.shape[0]}; methods={sorted(metrics['clustering_method'].unique())}", "medium", rel(metrics_path))
     check_true(audit, "Stage 5", "Cluster input excludes forbidden columns by code", "is_forbidden_feature_column" in code and "METADATA_COLUMNS" in code, "metadata and label token exclusion", "found", "critical", rel(code_path))
     check_true(audit, "Stage 5", "Cluster-label classifier uses selected acoustic features", "run_cluster_label_classifier" in code and "pd_subjects[features]" in code, "features only; labels are cluster labels", "found", "high", rel(code_path))
+    no_xgb_shap = re.search(r"\bfrom\s+xgboost\b|\bimport\s+xgboost\b|\bXGBClassifier\b|\bfrom\s+shap\b|\bimport\s+shap\b|\bshap\.", code, flags=re.IGNORECASE) is None
+    check_true(audit, "Stage 5", "No XGBoost/SHAP import or call", no_xgb_shap, "no xgboost/shap tokens", "absent" if no_xgb_shap else "found", "critical", rel(code_path))
     verify_metric_summary(audit, "Stage 5", classifier, ["model"], "fold", "fold", ["accuracy", "balanced_accuracy", "f1_macro", "f1_weighted", "roc_auc"], ddof=0, evidence_file=rel(classifier_path), summary_column_is_fold=True)
     audit_report_boundary(audit, "Stage 5", report, rel(report_path), expected_classifier_phrase="cluster-label classifier")
 
@@ -457,6 +466,8 @@ def audit_stage6(audit: Audit, tables: dict[str, pd.DataFrame]) -> None:
     check_true(audit, "Stage 6", "k=2 to k=8 reference scan exists", sorted(k_scan["k"].unique().tolist()) == list(range(2, 9)), "k values 2..8", sorted(k_scan["k"].unique().tolist()), "medium", rel(k_scan_path))
     check_true(audit, "Stage 6", "50-run stability analysis recorded", int(metrics["stability_n_runs"].min()) == 50 and int(k_scan["stability_n_runs"].min()) == 50, "stability_n_runs == 50", f"k6={metrics['stability_n_runs'].unique().tolist()}; scan={k_scan['stability_n_runs'].unique().tolist()}", "medium", f"{rel(metrics_path)}; {rel(k_scan_path)}")
     check_true(audit, "Stage 6", "Cluster input excludes forbidden columns by code", "is_forbidden_feature_column" in code and "METADATA_COLUMNS" in code, "metadata and label token exclusion", "found", "critical", rel(code_path))
+    no_xgb_shap = re.search(r"\bfrom\s+xgboost\b|\bimport\s+xgboost\b|\bXGBClassifier\b|\bfrom\s+shap\b|\bimport\s+shap\b|\bshap\.", code, flags=re.IGNORECASE) is None
+    check_true(audit, "Stage 6", "No XGBoost/SHAP import or call", no_xgb_shap, "no xgboost/shap tokens", "absent" if no_xgb_shap else "found", "critical", rel(code_path))
     stage5_selection_note = "stage5_nmi" in code and "selection_score" in code
     audit.add_check(
         "Stage 6",

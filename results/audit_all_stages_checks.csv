@@ -32,7 +32,7 @@ Stage 3,Fold splitter names,['StratifiedGroupKFold'],['StratifiedGroupKFold'],pa
 Stage 3,Pipeline scaler for LR/SVM,StandardScaler inside sklearn Pipeline,present,pass,critical,src/stage3_baseline_models.py,
 Stage 3,acoustic_only excludes sex_male,metadata and sex_male excluded,exclusion expression found,pass,critical,src/stage3_baseline_models.py,
 Stage 3,Subject-level metrics include required clinical metrics,"['balanced_accuracy', 'roc_auc', 'sensitivity', 'specificity']","['balanced_accuracy', 'roc_auc', 'sensitivity', 'specificity']",pass,medium,results/stage3_baseline_metrics_subject_level.csv,
-Stage 3,Main subject-level acoustic_only results exist,summary rows for acoustic_only,6,pass,high,results/stage3_baseline_metrics_subject_level.csv,
+Stage 3,Main subject-level acoustic_only results exist,summary rows for acoustic_only,8,pass,high,results/stage3_baseline_metrics_subject_level.csv,
 Stage 3,Metric summary rows equal fold recomputation,[],[],pass,high,results/stage3_baseline_metrics_subject_level.csv,Checked 8 metrics per group; ddof=1.
 Stage 4,Uses Dataset 1 deduplicated ready file,ready Dataset 1 input,found,pass,critical,src/stage4_biomarker_identification.py,
 Stage 4,Code aggregates by id before statistics,subject-level groupby before feature tests,found,pass,critical,src/stage4_biomarker_identification.py,
@@ -42,6 +42,8 @@ Stage 4,Subject-level acoustic feature count,752,752,pass,critical,results/stage
 Stage 4,Top20 row count,20,20,pass,high,results/stage4_top20_biomarkers_dataset1.csv,
 Stage 4,Top50 row count,50,50,pass,high,results/stage4_top50_biomarkers_dataset1.csv,
 Stage 4,Top20/Top50 forbidden metadata features,[],[],pass,critical,results/stage4_top20_biomarkers_dataset1.csv; results/stage4_top50_biomarkers_dataset1.csv,
+Stage 4,XGBoost/SHAP forbidden metadata features,[],[],pass,critical,results/stage4_xgboost_importance_dataset1.csv; results/stage4_shap_importance_dataset1.csv,
+Stage 4,SHAP supplemental columns present,"['shap_mean_abs_mean', 'rank_shap_mean_abs']","['rank_shap_mean_abs', 'shap_mean_abs_mean']",pass,medium,results/stage4_shap_importance_dataset1.csv,
 Stage 4,L1 scaling inside Pipeline,"Pipeline(StandardScaler, LogisticRegressionCV)",found,pass,critical,src/stage4_biomarker_identification.py,
 Stage 4,Permutation importance uses held-out fold function,held-out fold permutation,found,pass,high,src/stage4_biomarker_identification.py,
 Stage 4,Report guards candidate biomarkers from causal interpretation,guardrail wording present,present,pass,medium,src/stage4_biomarker_identification.py,
@@ -58,6 +60,7 @@ Stage 5,Recommended cluster sizes,"{0: 62, 1: 126}","{0: 62, 1: 126}",pass,criti
 Stage 5,Candidate count covers feature sets and methods,21 candidates with 3 methods,"rows=21; methods=['AgglomerativeClustering', 'GaussianMixture', 'KMeans']",pass,medium,results/stage5_clustering_metrics.csv,
 Stage 5,Cluster input excludes forbidden columns by code,metadata and label token exclusion,found,pass,critical,src/stage5_pd_two_cluster_phenotyping.py,
 Stage 5,Cluster-label classifier uses selected acoustic features,features only; labels are cluster labels,found,pass,high,src/stage5_pd_two_cluster_phenotyping.py,
+Stage 5,No XGBoost/SHAP import or call,no xgboost/shap tokens,absent,pass,critical,src/stage5_pd_two_cluster_phenotyping.py,
 Stage 5,Metric summary rows equal fold recomputation,[],[],pass,high,results/stage5_cluster_label_classifier_metrics.csv,Checked 5 metrics per group; ddof=0.
 Stage 5,Report names classifier as cluster-label classifier,cluster-label classifier,found,pass,high,results/stage5_two_cluster_report.md,
 Stage 5,Report avoids treating clusters as true clinical labels,no unguarded clinical symptom labels,none found,pass,critical,results/stage5_two_cluster_report.md,Clinical terms are acceptable only when explicitly negated or guarded.
@@ -75,6 +78,7 @@ Stage 6,Minimum cluster size,13,13,pass,high,results/stage6_six_cluster_assignme
 Stage 6,k=2 to k=8 reference scan exists,k values 2..8,"[2, 3, 4, 5, 6, 7, 8]",pass,medium,results/stage6_k_scan_metrics.csv,
 Stage 6,50-run stability analysis recorded,stability_n_runs == 50,k6=[50]; scan=[50],pass,medium,results/stage6_six_cluster_metrics.csv; results/stage6_k_scan_metrics.csv,
 Stage 6,Cluster input excludes forbidden columns by code,metadata and label token exclusion,found,pass,critical,src/stage6_pd_six_cluster_phenotyping.py,
+Stage 6,No XGBoost/SHAP import or call,no xgboost/shap tokens,absent,pass,critical,src/stage6_pd_six_cluster_phenotyping.py,
 Stage 6,Stage 5 cluster use limited to alignment/crosswalk/recommendation scoring,not used as clustering input,stage5_nmi appears in recommendation scoring,warning,medium,src/stage6_pd_six_cluster_phenotyping.py,"This is not clustering input leakage, but it should be disclosed because Stage 5 labels influence candidate recommendation."
 Stage 6,Stage 5 x Stage 6 crosswalk counts,0,0,pass,high,results/stage6_stage5_crosswalk.csv,
 Stage 6,Metric summary rows equal fold recomputation,[],[],pass,high,results/stage6_six_cluster_label_classifier_metrics.csv,Checked 7 metrics per group; ddof=0.
@@ -86,4 +90,4 @@ Cross-stage,Stage 5 and Stage 6 id set equality,True,True,pass,critical,results,
 Cross-stage,Top20 equals first 20 of Top50,"['std_delta_delta_log_energy', 'std_6th_delta_delta', 'std_8th_delta', 'std_9th_delta_delta', 'std_7th_delta_delta', 'tqwt_TKEO_std_dec_12', 'tqwt_minValue_dec_12', 'std_9th_delta', 'mean_MFCC_2nd_coef', 'tqwt_TKEO_std_dec_11', 'std_10th_delta', 'tqwt_maxValue_dec_11', 'std_7th_delta', 'tqwt_kurtosisValue_dec_36', 'std_6th_delta', 'tqwt_kurtosisValue_dec_27', 'tqwt_energy_dec_12', 'DFA', 'tqwt_entropy_shannon_dec_17', 'tqwt_stdValue_dec_7']","['std_delta_delta_log_energy', 'std_6th_delta_delta', 'std_8th_delta', 'std_9th_delta_delta', 'std_7th_delta_delta', 'tqwt_TKEO_std_dec_12', 'tqwt_minValue_dec_12', 'std_9th_delta', 'mean_MFCC_2nd_coef', 'tqwt_TKEO_std_dec_11', 'std_10th_delta', 'tqwt_maxValue_dec_11', 'std_7th_delta', 'tqwt_kurtosisValue_dec_36', 'std_6th_delta', 'tqwt_kurtosisValue_dec_27', 'tqwt_energy_dec_12', 'DFA', 'tqwt_entropy_shannon_dec_17', 'tqwt_stdValue_dec_7']",pass,high,results,
 Cross-stage,Top20/Top50 exist in subject table,[],[],pass,critical,results,
 Cross-stage,All-acoustic feature count,752,752,pass,critical,results/stage4_subject_level_feature_table_dataset1.csv,
-Static code audit,High-risk pattern scan fail count,0,0,pass,critical,results/audit_static_code_risk_patterns.csv,warning_count=205; warnings require explanation but are not automatic redlines.
+Static code audit,High-risk pattern scan fail count,0,0,pass,critical,results/audit_static_code_risk_patterns.csv,warning_count=227; warnings require explanation but are not automatic redlines.

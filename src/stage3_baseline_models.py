@@ -23,6 +23,16 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 
 try:
+    from xgboost import XGBClassifier
+
+    HAS_XGBOOST = True
+    XGBOOST_IMPORT_ERROR = ""
+except ImportError as exc:
+    XGBClassifier = None
+    HAS_XGBOOST = False
+    XGBOOST_IMPORT_ERROR = str(exc)
+
+try:
     from sklearn.model_selection import StratifiedGroupKFold
 
     HAS_STRATIFIED_GROUP_KFOLD = True
@@ -137,7 +147,7 @@ def feature_sets(df: pd.DataFrame, config: DatasetConfig) -> dict[str, list[str]
 
 
 def make_models() -> dict[str, Pipeline]:
-    return {
+    models = {
         "Logistic Regression": Pipeline(
             steps=[
                 ("scaler", StandardScaler()),
@@ -173,6 +183,29 @@ def make_models() -> dict[str, Pipeline]:
             ]
         ),
     }
+    if HAS_XGBOOST:
+        models["XGBoost (supplemental)"] = Pipeline(
+            steps=[
+                (
+                    "model",
+                    XGBClassifier(
+                        n_estimators=120,
+                        max_depth=2,
+                        learning_rate=0.05,
+                        subsample=0.8,
+                        colsample_bytree=0.8,
+                        reg_alpha=0.1,
+                        reg_lambda=5.0,
+                        objective="binary:logistic",
+                        eval_metric="logloss",
+                        tree_method="hist",
+                        random_state=RANDOM_STATE,
+                        n_jobs=1,
+                    ),
+                )
+            ]
+        )
+    return models
 
 
 def make_splitter() -> tuple[Any, str, str]:
@@ -475,6 +508,15 @@ def run_dataset(
             "`acoustic_plus_sex` is supplemental.",
         ]
     )
+    if HAS_XGBOOST:
+        report_lines.append(
+            "- XGBoost is included as a supplemental baseline and does not replace "
+            "the primary baseline interpretation."
+        )
+    else:
+        report_lines.append(
+            f"- XGBoost supplemental baseline was skipped because `xgboost` is unavailable: `{XGBOOST_IMPORT_ERROR}`."
+        )
     if config.key == "dataset2":
         report_lines.append(
             "- Dataset 2 prepared file only contains metadata cleanup and sex_male "
@@ -624,6 +666,7 @@ def write_report(
             "- All train/test splits are grouped by subject ID.",
             "- Standardization is only applied inside sklearn `Pipeline` objects.",
             "- No SMOTE, PCA, feature selection, SHAP, clustering, or large grid search was used.",
+            "- XGBoost is reported as a supplemental baseline only.",
             "- `sex_male` is excluded from the main `acoustic_only` models.",
             "",
         ]
@@ -646,7 +689,7 @@ def main() -> None:
         "",
         "Positive class: `1 = PD`; negative class: `0 = Healthy`.",
         "",
-        "Models: Logistic Regression, SVM-RBF, Random Forest.",
+        "Models: Logistic Regression, SVM-RBF, Random Forest, and optional XGBoost (supplemental).",
         "",
     ]
 
