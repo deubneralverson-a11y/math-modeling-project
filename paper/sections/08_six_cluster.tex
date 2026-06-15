@@ -6,7 +6,7 @@
 
 \subsection{输入、方法与结果}
 
-六类表型建模对 Top20、Top50 和 all acoustic 特征集进行候选方案比较，并做 \(k=2\) 到 \(k=8\) 的参考扫描。主方案为 \feature{top20_biomarkers} / \feature{pca_5} / AgglomerativeClustering。所有表示均先进行标准化，PCA 和聚类仅使用声学特征；二类聚类标签没有进入六类聚类输入。
+六类表型建模对 Top20、Top50 和 all acoustic 特征集进行候选方案比较，并做 \(k=2\) 到 \(k=8\) 的参考扫描。主方案为 \feature{top20_biomarkers} / \feature{pca_5} / AgglomerativeClustering。所有表示均先进行标准化，PCA 和聚类仅使用声学特征；二类聚类标签没有进入六类聚类输入。聚类评价同样结合 silhouette、Calinski-Harabasz、Davies-Bouldin 和 ARI 等指标\upcite{silhouette,calinski,davies,ari}。
 
 \begin{table}[H]
 \centering
@@ -33,17 +33,47 @@ Collapsed majority ARI & 0.8128 \\
 \caption{Dataset 1 PD 受试者六类潜在语音表型 PCA 可视化}
 \end{figure}
 
+该图将六类潜在语音表型投影到 PCA 二维平面。部分类别在平面上具有较清晰的区域分布，但也存在一定重叠，说明 \(k=6\) 划分比 \(k=2\) 更细，同时稳定性和分离度更弱。因此该图支持“探索性六类语音表型”的表述，而不能支持“六类临床症状完全可分”的结论。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.84\textwidth]{figures/stage6_candidate_metrics_comparison.png}
+\caption{六类潜在语音表型候选方案指标比较}
+\end{figure}
+
+该候选指标图用于说明主推荐方案不是单一指标最优的机械选择，而是在簇规模约束、稳定性、解释性和内部聚类指标之间折中选择。部分候选方案可能在单个指标上表现较好，但若出现过小簇、稳定性不足或依赖高维噪声空间，则不宜作为主解释方案。该图支持多指标综合推荐思路，不能说明六类表型具有外部临床标签验证。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{figures/stage6_cluster_size_distribution.png}
+\caption{六类潜在语音表型簇规模分布}
+\end{figure}
+
+该图展示六个簇的人数分布。主方案最小簇为 13 人，占 6.9\%，没有出现 1 人或 2 人小簇，说明该方案在固定 \(k=6\) 的前提下避免了极端碎片化划分。簇规模分布只能说明无监督划分在样本数量上的可解释性，不能说明各簇对应真实临床症状类别。
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/stage6_cluster_feature_heatmap.png}
 \caption{六类潜在语音表型特征热图}
 \end{figure}
 
+该热图展示六个簇在主要区分特征上的标准化均值差异，颜色深浅反映各簇在对应特征上的相对高低。Cluster 0 在部分 TQWT 特征上明显较高，Cluster 3 和 Cluster 4 在多项 Delta / Delta-delta 特征上较高，Cluster 5 在动态谱波动特征上相对较低。该图提供了六类潜在语音表型的声学画像基础，但不能说明这些画像对应具体临床症状。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/stage6_top_features_by_cluster.png}
+\caption{六类潜在语音表型各簇 Top 区分特征}
+\end{figure}
+
+该图进一步给出不同簇的主要区分特征，有助于观察各类潜在语音表型的具体声学画像。不同簇的 Top 特征集中在 TQWT 与 Delta / Delta-delta 相关特征，说明六类划分主要反映多尺度时频结构和动态谱波动模式的差异。该图只能解释声学空间内的聚类画像，不能作为临床症状命名依据。
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.76\textwidth]{figures/stage6_stage5_crosswalk_heatmap.png}
 \caption{二类潜在表型与六类潜在表型交叉关系}
 \end{figure}
+
+该图展示二类表型与六类表型之间的交叉关系。图中六类表型的部分簇主要落在二类表型 cluster 0，另一些簇主要落在二类表型 cluster 1，说明六类潜在表型在一定程度上可以看作二类潜在表型的进一步细分。结合 NMI 0.4089 和 collapsed majority ARI 0.8128，可说明两级语音表型之间存在中等程度对应关系。但这只是声学聚类标签之间的关系，不能解释为运动型/非运动型到六类临床症状的真实层级关系。
 
 \subsection{结果解释}
 

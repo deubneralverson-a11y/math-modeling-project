@@ -2,7 +2,9 @@
 
 \subsection{模型输入与方法}
 
-模型一输入为两个数据集的 acoustic-only 特征。Dataset 1 使用去重后的建模准备文件，并在报告主结果时按受试者聚合；Dataset 2 使用准备后的 240 条录音，并在交叉验证中按受试者 ID 分组。比较的模型包括 Logistic Regression、SVM-RBF 和 Random Forest。对 Logistic Regression 与 SVM-RBF，标准化嵌入 sklearn Pipeline，并且只在训练折内拟合。
+模型一输入为两个数据集的 acoustic-only 特征。Dataset 1 使用去重后的建模准备文件，并在报告主结果时按受试者聚合；Dataset 2 使用准备后的 240 条录音，并在交叉验证中按受试者 ID 分组。语音特征结合机器学习用于帕金森病识别已有较多研究基础，Little 等和 Tsanas 等分别从发声障碍测量与非侵入语音测试角度验证了语音特征在帕金森病远程监测中的价值\upcite{little2009,tsanas2010}；Naranjo 等进一步讨论了重复录音条件下的分类问题\upcite{dataset2,naranjo2017}。
+
+本文比较的模型包括 Logistic Regression、SVM-RBF 和 Random Forest。其中 SVM 适合处理非线性间隔分类问题\upcite{svm}，Random Forest 通过多棵决策树集成提高稳定性\upcite{breiman}。模型实现采用 scikit-learn 机器学习库\upcite{sklearn}。对 Logistic Regression 与 SVM-RBF，标准化嵌入 sklearn Pipeline，并且只在训练折内拟合。
 
 评价指标包括 accuracy、balanced accuracy、AUC、sensitivity、specificity 和 F1。其中 sensitivity 表示 PD 类召回率，specificity 表示 Healthy 类召回率。由于 Dataset 1 的 PD 受试者多于 Healthy 受试者，balanced accuracy 与 specificity 对判断模型是否过度偏向 PD 类尤为重要。
 
@@ -40,4 +42,4 @@ SVM-RBF & 0.8375 & 0.8375 & 0.8906 & 0.8000 & 0.8750 & 0.8300 \\
 \end{tabularx}
 \end{table}
 
-Dataset 2 中 SVM-RBF 的 accuracy、balanced accuracy 和 AUC 均最高，specificity 也达到 0.8750，因此在该数据集上作为主推荐诊断模型。Random Forest 的 specificity 较高但 sensitivity 较低，Logistic Regression 则更偏向保持 PD 类召回。
+Dataset 2 中 SVM-RBF 的 accuracy、balanced accuracy 和 AUC 均最高，specificity 也达到 0.8750，因此在该数据集上作为主推荐诊断模型。Random Forest 的 specificity 较高但 sensitivity 较低，提示其对 Healthy 类更保守；Logistic Regression 的 sensitivity 较高但整体 accuracy 低于 SVM-RBF。
