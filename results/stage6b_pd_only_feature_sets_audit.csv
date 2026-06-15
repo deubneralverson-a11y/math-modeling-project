@@ -1,0 +1,13 @@
+﻿feature_set,n_subjects_used_for_selection,selection_population,healthy_subjects_used,record_level_samples_used,n_features_original,is_sparse_pca_representation,sparse_pca_components,representations,selection_rule,forbidden_columns_excluded
+top20_biomarkers,188,Dataset 1 PD only (class == 1),0,0,20,False,,scaled_only;pca_5;pca_10,封版第 4 阶段 Top20；仅作对照；不加评分奖励,id;gender;class;sex_male;record_count;Stage 5 cluster;Stage 6 cluster
+top50_biomarkers,188,Dataset 1 PD only (class == 1),0,0,50,False,,scaled_only;pca_5;pca_10,封版第 4 阶段 Top50；仅作对照；不加评分奖励,id;gender;class;sex_male;record_count;Stage 5 cluster;Stage 6 cluster
+all_acoustic,188,Dataset 1 PD only (class == 1),0,0,752,False,,pca_10;pca_20;pca_90,全部 752 个声学特征；聚类前必须先做 PCA,id;gender;class;sex_male;record_count;Stage 5 cluster;Stage 6 cluster
+pd_corr_reduced_all_090,188,Dataset 1 PD only (class == 1),0,0,310,False,,pca_10;pca_20;pca_90,基于 PD-only 样本，从全部声学特征出发按 |r| > 0.90 做相关性去冗余,id;gender;class;sex_male;record_count;Stage 5 cluster;Stage 6 cluster
+pd_corr_reduced_all_095,188,Dataset 1 PD only (class == 1),0,0,425,False,,pca_10;pca_20;pca_90,基于 PD-only 样本，从全部声学特征出发按 |r| > 0.95 做相关性去冗余,id;gender;class;sex_male;record_count;Stage 5 cluster;Stage 6 cluster
+pd_corr_reduced_top50_090,188,Dataset 1 PD only (class == 1),0,0,31,False,,scaled_only;pca_5;pca_10,基于 PD-only 样本，对第 4 阶段 Top50 按 |r| > 0.90 做相关性去冗余,id;gender;class;sex_male;record_count;Stage 5 cluster;Stage 6 cluster
+pd_high_iqr_top50,188,Dataset 1 PD only (class == 1),0,0,50,False,,scaled_only;pca_5;pca_10,基于 PD-only 样本，在 752 个声学特征中保留 IQR 最大的 50 个,id;gender;class;sex_male;record_count;Stage 5 cluster;Stage 6 cluster
+pd_high_iqr_top100,188,Dataset 1 PD only (class == 1),0,0,100,False,,pca_10;pca_20;pca_90,基于 PD-only 样本，在 752 个声学特征中保留 IQR 最大的 100 个,id;gender;class;sex_male;record_count;Stage 5 cluster;Stage 6 cluster
+pd_high_mad_top50,188,Dataset 1 PD only (class == 1),0,0,50,False,,scaled_only;pca_5;pca_10,基于 PD-only 样本，在 752 个声学特征中保留 MAD 最大的 50 个,id;gender;class;sex_male;record_count;Stage 5 cluster;Stage 6 cluster
+pd_high_mad_top100,188,Dataset 1 PD only (class == 1),0,0,100,False,,pca_10;pca_20;pca_90,基于 PD-only 样本，在 752 个声学特征中保留 MAD 最大的 100 个,id;gender;class;sex_male;record_count;Stage 5 cluster;Stage 6 cluster
+pd_sparse_pca_10,188,Dataset 1 PD only (class == 1),0,0,752,True,10.0,sparse_pca_10,对 752 个 PD-only 声学特征先标准化，再提取 10 维 SparsePCA 表示,id;gender;class;sex_male;record_count;Stage 5 cluster;Stage 6 cluster
+pd_sparse_pca_20,188,Dataset 1 PD only (class == 1),0,0,752,True,20.0,sparse_pca_20,对 752 个 PD-only 声学特征先标准化，再提取 20 维 SparsePCA 表示,id;gender;class;sex_male;record_count;Stage 5 cluster;Stage 6 cluster
