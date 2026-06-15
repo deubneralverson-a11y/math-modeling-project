@@ -1,7 +1,7 @@
 \appendix
 \section{附录：程序代码}
 
-本附录给出建模、特征识别、潜在表型分析、权重敏感性分析与全流程审计所用的完整代码。为避免正文被程序实现细节打断，代码统一置于附录。
+本附录给出建模、特征识别、潜在表型分析与权重敏感性分析所用的完整代码。为避免正文被程序实现细节打断，代码统一置于附录。
 
 \subsection{代码一：数据预处理与质量控制}
 \VerbatimInput[fontsize=\tiny,breaklines=true,breakanywhere=true,numbers=left,numbersep=4pt,xleftmargin=1.8em]{../src/stage2_qc_pipeline.py}
@@ -25,7 +25,3 @@
 \clearpage
 \subsection{代码六：PD 内部分型特征扩展与权重敏感性分析}
 \VerbatimInput[fontsize=\tiny,breaklines=true,breakanywhere=true,numbers=left,numbersep=4pt,xleftmargin=1.8em]{../src/stage5b_stage6b_pdonly_sensitivity.py}
-
-\clearpage
-\subsection{代码七：全流程逻辑审计}
-\VerbatimInput[fontsize=\tiny,breaklines=true,breakanywhere=true,numbers=left,numbersep=4pt,xleftmargin=1.8em]{../src/audit_all_stages_logic.py}
