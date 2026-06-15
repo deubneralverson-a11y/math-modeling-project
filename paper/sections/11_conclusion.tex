@@ -6,6 +6,6 @@
 
 针对问题三，Dataset 2 按受试者 ID 分组交叉验证后，SVM-RBF 取得 accuracy 0.8375、balanced accuracy 0.8375 和 AUC 0.8906，是该数据集上的主推荐模型。该结论支持语音特征在独立数据集中的辅助诊断价值，但仍受样本量限制。
 
-针对问题四，本文在 188 名 PD 受试者内部得到二类潜在语音表型。第 5b 阶段无奖励权重敏感性分析显示，\feature{top20_biomarkers} / \feature{pca_5} / KMeans 仍为第一名频率最高的候选，但 top-1 频率仅为 37.3\%，因此应表述为相对推荐候选方案，并同时报告 \feature{top50_biomarkers} / \feature{pca_5} / KMeans 和 \feature{pd_high_iqr_top50} / \feature{pca_5} / AgglomerativeClustering 等可接受候选。该结构主要由动态谱波动特征和部分 TQWT 特征区分，但不是真实运动型/非运动型诊断。
+针对问题四，本文在 188 名 PD 受试者内部得到二类潜在语音表型。权重敏感性分析显示，\feature{top20_biomarkers} / \feature{pca_5} / KMeans 的 top-1 频率最高但仅为 37.3\%，因此应表述为相对推荐候选方案，并同时报告 \feature{top50_biomarkers} / \feature{pca_5} / KMeans 和 \feature{pd_high_iqr_top50} / \feature{pca_5} / AgglomerativeClustering 等可接受候选。该结构主要由动态谱波动特征和部分 TQWT 特征区分，但不是真实运动型/非运动型诊断。
 
-针对问题五，本文固定 \(k=6\) 得到六类潜在语音表型。第 6b 阶段无奖励权重敏感性分析显示，\feature{top20_biomarkers} / \feature{pca_5} / AgglomerativeClustering 的 top-1 频率为 87.1\%，可保留为稳健主推荐方案。六簇主要由 Delta / Delta-delta 与 TQWT 特征区分，但其标签只表示声学空间中的潜在结构，不能写作由六类真实症状标签验证的诊断结果。后续若获得真实六类临床症状标签，应重新建立受试者级监督验证框架。
+针对问题五，本文固定 \(k=6\) 得到六类潜在语音表型。权重敏感性分析显示，\feature{top20_biomarkers} / \feature{pca_5} / AgglomerativeClustering 的 top-1 频率为 87.1\%，可作为稳健主推荐方案。六簇主要由 Delta / Delta-delta 与 TQWT 特征区分，但其标签只表示声学空间中的潜在结构，不能写作由六类真实症状标签验证的诊断结果。后续若获得真实六类临床症状标签，应重新建立受试者级监督验证框架。

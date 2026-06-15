@@ -9,7 +9,7 @@
 
 对问题二，本文在 Dataset 1 受试者级数据上整合 Mann-Whitney U 检验、Welch t-test、FDR-BH 校正、Cohen's \(d\)、Cliff's delta、L1 Logistic 稳定选择、ExtraTrees 重要性和 held-out permutation importance，得到候选语音生物标志物综合排序。Top20 特征主要包括 Delta / Delta-delta 动态谱波动特征与 TQWT 多尺度特征；Top50 中 TQWT 特征 31 个、Delta / Delta-delta 特征 16 个、Shimmer、MFCC 和 Nonlinear 特征各 1 个。上述结果仅表示判别性声学特征或候选语音生物标志物，不构成临床因果解释。
 
-对问题四和问题五，由于数据集中没有真实运动型/非运动型标签，也没有静止性震颤、运动迟缓、肌肉僵直、疼痛、痴呆、睡眠障碍六类临床症状标签，本文仅在 Dataset 1 的 188 名 PD 受试者内部进行无监督潜在语音表型分析。第 5b 阶段无奖励权重敏感性分析显示，二类分型原方案 \feature{top20_biomarkers} / \feature{pca_5} / KMeans 的 top-1 频率为 37.3\%，因此保留为相对推荐候选方案，并同步报告多个可接受候选。第 6b 阶段显示，六类潜在语音表型方案 \feature{top20_biomarkers} / \feature{pca_5} / AgglomerativeClustering 的 top-1 频率为 87.1\%，可作为 \(k=6\) 潜在语音表型聚类的稳健主推荐方案。上述分型结果均不应解释为已经由临床标签确认的真实亚型或症状类别。
+对问题四和问题五，由于数据集中没有真实运动型/非运动型标签，也没有静止性震颤、运动迟缓、肌肉僵直、疼痛、痴呆、睡眠障碍六类临床症状标签，本文仅在 Dataset 1 的 188 名 PD 受试者内部进行无监督潜在语音表型分析。二类潜在语音表型采用多候选报告口径，其中 \feature{top20_biomarkers} / \feature{pca_5} / KMeans 的权重敏感性 top-1 频率最高，为 37.3\%，因此作为相对推荐候选方案，而不作为唯一稳健最优结论。六类潜在语音表型采用 \feature{top20_biomarkers} / \feature{pca_5} / AgglomerativeClustering，其权重敏感性 top-1 频率为 87.1\%，可作为 \(k=6\) 潜在语音表型聚类的稳健主推荐方案。上述分型结果均不应解释为已经由临床标签确认的真实亚型或症状类别。
 
 本文在建模流程中保持受试者分组、训练折内标准化、主声学模型排除非声学变量和无监督标签不回流输入等约束，以降低样本单位错误和信息泄漏风险。综上，语音声学特征对帕金森病辅助筛查、判别性特征识别和探索性潜在语音表型分析具有一定价值，但本文模型不应解释为临床确诊工具，仍需更大样本和真实临床症状标签验证。
 

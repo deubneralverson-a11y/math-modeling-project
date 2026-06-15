@@ -6,7 +6,7 @@
 
 \subsection{输入、方法与结果}
 
-六类潜在语音表型建模对 Top20、Top50 和 all acoustic 特征集进行候选方案比较，并做 \(k=2\) 到 \(k=8\) 的参考扫描。原第 6 阶段主方案为 \feature{top20_biomarkers} / \feature{pca_5} / AgglomerativeClustering。第 6b 阶段在取消 Top20/Top50 奖励、取消 Stage 5 NMI 评分项并进行 10000 组 Dirichlet 权重敏感性分析后，该方案 top-1 频率为 87.1\%，达到 60\% 的稳健主推荐阈值。因此，本文保留其作为 \(k=6\) 潜在语音表型聚类的稳健主推荐方案。
+六类潜在语音表型建模对 Top20、Top50、all acoustic 以及 PD-only 内部筛选得到的特征表示进行候选方案比较，并做 \(k=2\) 到 \(k=8\) 的参考扫描。在不对 Top20/Top50 设置解释性奖励、且不把二类聚类一致性作为评分项的条件下，\feature{top20_biomarkers} / \feature{pca_5} / AgglomerativeClustering 的权重敏感性 top-1 频率为 87.1\%，达到 60\% 的稳健主推荐阈值。因此，本文将其作为 \(k=6\) 潜在语音表型聚类的稳健主推荐方案。
 
 所有表示均先进行标准化，PCA 和聚类仅使用声学特征；二类聚类标签没有进入六类聚类输入。聚类评价同样结合 silhouette、Calinski-Harabasz、Davies-Bouldin 和 ARI 等指标\upcite{silhouette,calinski,davies,ari}。
 
@@ -44,7 +44,7 @@ Collapsed majority ARI & 0.8128 \\
 \caption{六类潜在语音表型候选方案指标比较}
 \end{figure}
 
-该候选指标图用于说明主推荐方案不是单一指标最优的机械选择，而是在簇规模约束、稳定性和内部聚类指标之间折中选择。第 6b 阶段进一步显示，该方案在无解释性奖励和无 Stage 5 NMI 评分项的设定下仍保持较高 top-1 频率。该图和敏感性分析均不能说明六类表型具有外部临床标签验证。
+该候选指标图用于说明主推荐方案不是单一指标最优的机械选择，而是在簇规模约束、稳定性和内部聚类指标之间折中选择。权重敏感性分析进一步显示，该方案在无解释性奖励和无二类聚类一致性评分项的设定下仍保持较高 top-1 频率。该图和敏感性分析均不能说明六类表型具有外部临床标签验证。
 
 \begin{figure}[H]
 \centering

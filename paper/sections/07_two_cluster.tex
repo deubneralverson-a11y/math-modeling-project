@@ -6,7 +6,7 @@
 
 \subsection{输入、方法与结果}
 
-候选输入特征集包括前述综合排序得到的 Top20、Top50 和 all acoustic 特征。原第 5 阶段方案为 \feature{top20_biomarkers} / \feature{pca_5} / KMeans。经第 5b 阶段无奖励权重敏感性分析后，该方案仍为第一名频率最高的候选，但 top-1 频率仅为 37.3\%，低于 60\% 的稳健主推荐阈值。因此，本文将其表述为“相对推荐候选方案”，不再作为唯一最优结论。
+候选输入特征集包括 Top20、Top50、all acoustic 以及 PD-only 内部筛选得到的相关性去冗余、高 IQR/MAD 和 SparsePCA 表示方案。综合内部聚类指标、簇均衡性和 10000 组 Dirichlet 权重敏感性分析后，本文采用多候选报告口径。\feature{top20_biomarkers} / \feature{pca_5} / KMeans 的 top-1 频率最高，为 37.3\%，低于 60\% 的稳健主推荐阈值，因此表述为“相对推荐候选方案”，不作为唯一最优结论。
 
 所有候选方案先执行标准化，再按方案进行 PCA 和聚类。聚类输入不包含 \feature{id}、\feature{gender}、\feature{class}、\feature{sex_male}、\feature{record_count} 或任何标签列。聚类质量通过 silhouette、Calinski-Harabasz、Davies-Bouldin 和重采样 ARI 等指标综合评价\upcite{silhouette,calinski,davies,ari}。
 
