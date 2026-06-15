@@ -1,0 +1,48 @@
+\section{PD 内部分型特征扩展与权重敏感性分析}
+
+考虑到 Healthy/PD 判别特征可能主要刻画疾病有无或总体异常程度，本文进一步构建 PD-only 特征方案，包括相关性去冗余、高 IQR/MAD 特征筛选和 SparsePCA 表示，并取消对 Top20/Top50 的解释性评分奖励。随后对 silhouette、Calinski-Harabasz、反向 Davies-Bouldin、稳定性 ARI 和簇均衡性进行 10000 组 Dirichlet 权重敏感性分析。
+
+第 5b 阶段结果显示，第（4）问原主方案 \feature{top20_biomarkers} / \feature{pca_5} / KMeans 仍为第一名频率最高的候选，但 top-1 频率仅为 37.3\%，因此只能作为相对推荐候选方案，并应同步报告多个可接受候选。与其接近的候选包括 \feature{top50_biomarkers} / \feature{pca_5} / KMeans 和 \feature{pd_high_iqr_top50} / \feature{pca_5} / AgglomerativeClustering。该结果说明二类潜在语音表型方案对权重设定存在一定敏感性，不宜表述为唯一稳健最优。
+
+第 6b 阶段结果显示，第（5）问原主方案 \feature{top20_biomarkers} / \feature{pca_5} / AgglomerativeClustering 的 top-1 频率为 87.1\%，在无奖励设定下仍保持稳健。因此，该方案可保留为 \(k=6\) 潜在语音表型聚类的稳健主推荐方案，但仍不能写作由临床症状标签监督得到的诊断模型。
+
+\begin{table}[H]
+\centering
+\caption{第 5b 阶段权重敏感性主要候选}
+\begin{tabularx}{\textwidth}{lYcc}
+\toprule
+候选 & 特征 / 表示 / 聚类方法 & top-1 频率 & top-3 频率 \\
+\midrule
+1 & \feature{top20_biomarkers} / \feature{pca_5} / KMeans & 37.3\% & 63.2\% \\
+2 & \feature{top50_biomarkers} / \feature{pca_5} / KMeans & 22.4\% & 35.2\% \\
+3 & \feature{pd_high_iqr_top50} / \feature{pca_5} / AgglomerativeClustering & 21.0\% & 28.9\% \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{第 6b 阶段权重敏感性主要候选}
+\begin{tabularx}{\textwidth}{lYcc}
+\toprule
+候选 & 特征 / 表示 / 聚类方法 & top-1 频率 & 判定 \\
+\midrule
+1 & \feature{top20_biomarkers} / \feature{pca_5} / AgglomerativeClustering & 87.1\% & 稳健主推荐 \\
+2 & \feature{all_acoustic} / \feature{pca_90} / GaussianMixture & 12.9\% & 可接受候选 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.88\textwidth]{figures/stage5b_weight_sensitivity_top_candidates.png}
+\caption{第 5b 阶段权重敏感性主要候选}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.88\textwidth]{figures/stage6b_weight_sensitivity_top_candidates.png}
+\caption{第 6b 阶段权重敏感性主要候选}
+\end{figure}
+
+综上，第（4）问应从单一最优表述改为“相对推荐候选方案”，并同时列出多个可接受候选；第（5）问可保留原主方案，但应严格限定为 \(k=6\) 潜在语音表型聚类，不应写成临床症状分类或临床分型验证。

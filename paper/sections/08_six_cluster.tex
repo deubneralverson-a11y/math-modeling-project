@@ -2,25 +2,28 @@
 
 \subsection{建模边界}
 
-题目第五问涉及六类帕金森病症状，但数据集中没有静止性震颤、运动迟缓、肌肉僵直、疼痛、痴呆、睡眠障碍六类真实临床症状标签。因此，本文只在 Dataset 1 的 188 名 PD 受试者内部固定 \(k=6\) 进行无监督聚类，输出基于语音特征的六类潜在表型。六个 cluster 编号没有直接临床症状含义，仍需真实临床症状标签进一步验证。
+题目第五问涉及六类帕金森病症状，但数据集中没有静止性震颤、运动迟缓、肌肉僵直、疼痛、痴呆、睡眠障碍六类真实临床症状标签。因此，本文只在 Dataset 1 的 188 名 PD 受试者内部固定 \(k=6\) 进行无监督聚类，输出基于语音特征的六类潜在语音表型。六个 cluster 编号没有直接临床症状含义，仍需真实临床症状标签进一步验证。
 
 \subsection{输入、方法与结果}
 
-六类表型建模对 Top20、Top50 和 all acoustic 特征集进行候选方案比较，并做 \(k=2\) 到 \(k=8\) 的参考扫描。主方案为 \feature{top20_biomarkers} / \feature{pca_5} / AgglomerativeClustering。所有表示均先进行标准化，PCA 和聚类仅使用声学特征；二类聚类标签没有进入六类聚类输入。聚类评价同样结合 silhouette、Calinski-Harabasz、Davies-Bouldin 和 ARI 等指标\upcite{silhouette,calinski,davies,ari}。
+六类潜在语音表型建模对 Top20、Top50 和 all acoustic 特征集进行候选方案比较，并做 \(k=2\) 到 \(k=8\) 的参考扫描。原第 6 阶段主方案为 \feature{top20_biomarkers} / \feature{pca_5} / AgglomerativeClustering。第 6b 阶段在取消 Top20/Top50 奖励、取消 Stage 5 NMI 评分项并进行 10000 组 Dirichlet 权重敏感性分析后，该方案 top-1 频率为 87.1\%，达到 60\% 的稳健主推荐阈值。因此，本文保留其作为 \(k=6\) 潜在语音表型聚类的稳健主推荐方案。
+
+所有表示均先进行标准化，PCA 和聚类仅使用声学特征；二类聚类标签没有进入六类聚类输入。聚类评价同样结合 silhouette、Calinski-Harabasz、Davies-Bouldin 和 ARI 等指标\upcite{silhouette,calinski,davies,ari}。
 
 \begin{table}[H]
 \centering
-\caption{六类潜在语音表型主方案指标}
+\caption{六类潜在语音表型稳健主推荐方案指标}
 \begin{tabularx}{\textwidth}{lY}
 \toprule
 项目 & 数值 \\
 \midrule
-主方案 & \feature{top20_biomarkers} / \feature{pca_5} / AgglomerativeClustering \\
+稳健主推荐方案 & \feature{top20_biomarkers} / \feature{pca_5} / AgglomerativeClustering \\
 PD 受试者数 & 188 \\
 六簇人数 & 13、55、34、28、25、33 \\
 最小簇比例 & 0.0691 \\
 Silhouette & 0.1823 \\
 Stability ARI mean & 0.4582 \\
+权重敏感性 top-1 频率 & 87.1\% \\
 二类与六类表型 NMI & 0.4089 \\
 Collapsed majority ARI & 0.8128 \\
 \bottomrule
@@ -41,7 +44,7 @@ Collapsed majority ARI & 0.8128 \\
 \caption{六类潜在语音表型候选方案指标比较}
 \end{figure}
 
-该候选指标图用于说明主推荐方案不是单一指标最优的机械选择，而是在簇规模约束、稳定性、解释性和内部聚类指标之间折中选择。部分候选方案可能在单个指标上表现较好，但若出现过小簇、稳定性不足或依赖高维噪声空间，则不宜作为主解释方案。该图支持多指标综合推荐思路，不能说明六类表型具有外部临床标签验证。
+该候选指标图用于说明主推荐方案不是单一指标最优的机械选择，而是在簇规模约束、稳定性和内部聚类指标之间折中选择。第 6b 阶段进一步显示，该方案在无解释性奖励和无 Stage 5 NMI 评分项的设定下仍保持较高 top-1 频率。该图和敏感性分析均不能说明六类表型具有外部临床标签验证。
 
 \begin{figure}[H]
 \centering

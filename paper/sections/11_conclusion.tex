@@ -1,13 +1,11 @@
 \section{结论}
 
-针对问题一，Dataset 1 的 PD/Healthy 辅助诊断模型表明，语音声学特征具有一定判别能力。Random Forest 的 accuracy 和 AUC 较高，但 specificity 较低，提示其偏向 PD 类；SVM-RBF 在 balanced accuracy 上表现相对稳健。
+针对问题一，本文在 Dataset 1 上建立受试者级 PD/Healthy 辅助诊断模型。Random Forest 的 accuracy 和 AUC 较高，但 specificity 偏低；SVM-RBF 的 balanced accuracy 更稳健。该结果说明语音声学特征具有一定辅助筛查价值，但不能替代临床诊断。
 
 针对问题二，综合多种统计和模型解释证据，本文得到 Top20 候选语音生物标志物。其中特征主要集中于 Delta / Delta-delta 动态谱波动和 TQWT 多尺度声学结构，说明这些声学维度对 PD/Healthy 判别具有较强关联性，但不能解释为临床因果结论。
 
 针对问题三，Dataset 2 按受试者 ID 分组交叉验证后，SVM-RBF 取得 accuracy 0.8375、balanced accuracy 0.8375 和 AUC 0.8906，是该数据集上的主推荐模型。该结论支持语音特征在独立数据集中的辅助诊断价值，但仍受样本量限制。
 
-针对问题四，本文在 188 名 PD 受试者内部得到二类潜在语音表型。主方案 silhouette 为 0.3674，stability ARI mean 为 0.9854，显示较稳定的二类声学结构。该结构主要由动态谱波动特征和部分 TQWT 特征区分，但不是真实运动型/非运动型诊断。
+针对问题四，本文在 188 名 PD 受试者内部得到二类潜在语音表型。第 5b 阶段无奖励权重敏感性分析显示，\feature{top20_biomarkers} / \feature{pca_5} / KMeans 仍为第一名频率最高的候选，但 top-1 频率仅为 37.3\%，因此应表述为相对推荐候选方案，并同时报告 \feature{top50_biomarkers} / \feature{pca_5} / KMeans 和 \feature{pd_high_iqr_top50} / \feature{pca_5} / AgglomerativeClustering 等可接受候选。该结构主要由动态谱波动特征和部分 TQWT 特征区分，但不是真实运动型/非运动型诊断。
 
-针对问题五，本文固定 \(k=6\) 得到六类潜在语音表型。六簇主要由 Delta / Delta-delta 与 TQWT 特征区分，但其 silhouette 和稳定性弱于二类方案，因此只能作为探索性六类语音表型。后续若获得真实六类临床症状标签，应重新建立受试者级监督验证框架。
-
-总体而言，语音声学特征对帕金森病辅助筛查、判别性特征识别和探索性分型具有应用潜力。本文结论应定位为辅助建模证据和探索性语音表型分析，而非临床确诊模型。
+针对问题五，本文固定 \(k=6\) 得到六类潜在语音表型。第 6b 阶段无奖励权重敏感性分析显示，\feature{top20_biomarkers} / \feature{pca_5} / AgglomerativeClustering 的 top-1 频率为 87.1\%，可保留为稳健主推荐方案。六簇主要由 Delta / Delta-delta 与 TQWT 特征区分，但其标签只表示声学空间中的潜在结构，不能写作由六类真实症状标签验证的诊断结果。后续若获得真实六类临床症状标签，应重新建立受试者级监督验证框架。
